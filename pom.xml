@@ -26,10 +26,28 @@
     </dependency>
   </dependencies>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
   <scm>
     <connection>scm:git:git://github.com/Smerty/jham.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Smerty/jham.git</developerConnection>
     <url>http://github.com/Smerty/jham</url>
   </scm>
 
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
 </project>
