@@ -1,24 +1,48 @@
 package org.smerty.jham;
 
+/** Location class with methods allowing conversion
+ * to and from Maidenhead locator (grid squares) based off of
+ * "Conversion Between Geodetic and Grid Locator Systems"
+ * by Edmund T. Tyson, N5JTY
+ * in QST January 1989, pp. 29-30, 43
+ *
+ * @author Paul Picazo <ppicazo@gmail.com>
+ *
+ */
 public class Location {
 
 	private double latitude;
 	private double longitude;
 
+	/**
+	 * @param latitude
+	 * @param longitude
+	 */
 	public Location(double latitude, double longitude) {
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
 
+	/**
+	 * @param maidenhead
+	 */
 	public Location(String maidenhead) {
 		this.latitude = extractLat(maidenhead);
 		this.longitude = extractLon(maidenhead);
 	}
 
+	/**
+	 * @return maidenhead locator string
+	 */
 	public String toMaidenhead() {
 		return toMaidenhead(this.latitude, this.longitude);
 	}
 
+	/**
+	 * @param latitude
+	 * @param longitude
+	 * @return maidenhead locator string
+	 */
 	public static String toMaidenhead(double latitude, double longitude) {
 
 		longitude += 180;
@@ -43,30 +67,50 @@ public class Location {
 		return sb.toString();
 	}
 
+	/**
+	 * @param maidenhead
+	 * @return latitude
+	 */
 	public static double extractLat(String maidenhead) {
 		maidenhead = maidenhead.toUpperCase();
 		double latitude = -89 + 10 * (maidenhead.charAt(1) - 'A') + (maidenhead.charAt(3) - '0') + (-58.8150000000003 + 2.5050000000000234 * (maidenhead.charAt(5) - 'A'))/60;
 		return latitude;
 	}
 
+	/**
+	 * @param maidenhead
+	 * @return longitude
+	 */
 	public static double extractLon(String maidenhead) {
 		maidenhead = maidenhead.toUpperCase();
 		double longitude = -178 + 20 * (maidenhead.charAt(0) - 'A') + 2 * (maidenhead.charAt(2) - '0') + (-117.41999999999962 + 4.979999999999904 * (maidenhead.charAt(4) - 'A'))/60.0;
 		return longitude;
 	}
 
+	/**
+	 * @return latitude
+	 */
 	public double getLatitude() {
 		return latitude;
 	}
 
+	/**
+	 * @return longitude
+	 */
 	public double getLongitude() {
 		return longitude;
 	}
 
+	/**
+	 * @param latitude
+	 */
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 
+	/**
+	 * @param longitude
+	 */
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
