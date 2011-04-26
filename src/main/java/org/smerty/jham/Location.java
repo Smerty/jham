@@ -45,13 +45,13 @@ public class Location {
 
 	public static double extractLat(String maidenhead) {
 		maidenhead = maidenhead.toUpperCase();
-		double latitude = -89 + 10 * (maidenhead.charAt(1) - 'A') + (maidenhead.charAt(3) - '0') + (-58.8150000000003 + 2.5050000000000234 * (maidenhead.charAt(5) - 'A'))/60;
+		double latitude = -90 + 10 * (maidenhead.charAt(1) - 'A') + 1 * (maidenhead.charAt(3) - '0') + 2.5/60 * (maidenhead.charAt(5) - 'A') + 2.5/60/2;
 		return latitude;
 	}
 
 	public static double extractLon(String maidenhead) {
 		maidenhead = maidenhead.toUpperCase();
-		double longitude = -178 + 20 * (maidenhead.charAt(0) - 'A') + 2 * (maidenhead.charAt(2) - '0') + (-117.41999999999962 + 4.979999999999904 * (maidenhead.charAt(4) - 'A'))/60.0;
+		double longitude = -180 + 20 * (maidenhead.charAt(0) - 'A') + 2 * (maidenhead.charAt(2) - '0') + 5.0/60 * (maidenhead.charAt(4) - 'A') + 5.0/60/2;
 		return longitude;
 	}
 
