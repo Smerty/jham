@@ -11,7 +11,15 @@ package org.smerty.jham;
  */
 public class Location {
 
+  /**
+   * latitude in degrees, positive for northern hemisphere, negative for
+   * southern hemisphere.
+   */
   private double latitude;
+  /**
+   * longitude in degrees, positive for eastern hemisphere, negative for western
+   * hemisphere.
+   */
   private double longitude;
 
   /** No argument constructor.
