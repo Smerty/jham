@@ -72,4 +72,18 @@ public class LocationTest {
       assertEquals(longitudes[n], Location.extractLon(locators[n]), FUDGE_FACTOR);
     }
   }
+
+  @Test
+  public void testGetSetLat() {
+      Location loc = new Location();
+      loc.setLatitude(latitudes[0]);
+      assertEquals(latitudes[0], loc.getLatitude(), 0);
+  }
+
+  @Test
+  public void testGetSetLon() {
+      Location loc = new Location();
+      loc.setLongitude(longitudes[0]);
+      assertEquals(longitudes[0], loc.getLongitude(), 0);
+  }
 }

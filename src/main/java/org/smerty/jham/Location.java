@@ -14,6 +14,12 @@ public class Location {
   private double latitude;
   private double longitude;
 
+  /** No argument constructor
+   *
+   */
+  public Location() {
+  }
+
   /**
    * @param latitude
    * @param longitude
