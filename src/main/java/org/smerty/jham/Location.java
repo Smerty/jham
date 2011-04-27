@@ -48,7 +48,7 @@ public class Location {
   /**
    * @return maidenhead locator string
    */
-  final public String toMaidenhead() {
+  public final String toMaidenhead() {
     return toMaidenhead(this.latitude, this.longitude);
   }
 
@@ -109,28 +109,28 @@ public class Location {
   /**
    * @return latitude
    */
-  final public double getLatitude() {
+  public final double getLatitude() {
     return latitude;
   }
 
   /**
    * @return longitude
    */
-  final public double getLongitude() {
+  public final double getLongitude() {
     return longitude;
   }
 
   /**
    * @param latitudeIn north/south component of location
    */
-  final public void setLatitude(final double latitudeIn) {
+  public final  void setLatitude(final double latitudeIn) {
     this.latitude = latitudeIn;
   }
 
   /**
    * @param longitudeIn east/west component of location
    */
-  final public void setLongitude(final double longitudeIn) {
+  public final void setLongitude(final double longitudeIn) {
     this.longitude = longitudeIn;
   }
 }
