@@ -21,12 +21,12 @@ public class Location {
   }
 
   /**
-   * @param latitude
-   * @param longitude
+   * @param latitudeIn
+   * @param longitudeIn
    */
-  public Location(final double latitude, final double longitude) {
-    this.latitude = latitude;
-    this.longitude = longitude;
+  public Location(final double latitudeIn, final double longitudeIn) {
+    this.latitude = latitudeIn;
+    this.longitude = longitudeIn;
   }
 
   /**
@@ -45,8 +45,8 @@ public class Location {
   }
 
   /**
-   * @param latitude
-   * @param longitude
+   * @param latitudeIn
+   * @param longitudeIn
    * @return maidenhead locator string
    */
   public static String toMaidenhead(final double latitudeIn, final double longitudeIn) {
@@ -74,7 +74,7 @@ public class Location {
   }
 
   /**
-   * @param maidenhead
+   * @param maidenheadIn
    * @return latitude
    */
   public static double extractLat(final String maidenheadIn) {
@@ -86,7 +86,7 @@ public class Location {
   }
 
   /**
-   * @param maidenhead
+   * @param maidenheadIn
    * @return longitude
    */
   public static double extractLon(final String maidenheadIn) {
@@ -112,16 +112,16 @@ public class Location {
   }
 
   /**
-   * @param latitude
+   * @param latitudeIn
    */
-  final public void setLatitude(final double latitude) {
-    this.latitude = latitude;
+  final public void setLatitude(final double latitudeIn) {
+    this.latitude = latitudeIn;
   }
 
   /**
-   * @param longitude
+   * @param longitudeIn
    */
-  final public void setLongitude(final double longitude) {
-    this.longitude = longitude;
+  final public void setLongitude(final double longitudeIn) {
+    this.longitude = longitudeIn;
   }
 }
