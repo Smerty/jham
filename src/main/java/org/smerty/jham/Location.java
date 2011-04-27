@@ -62,22 +62,22 @@ public class Location {
 
     double longitude = longitudeIn + 180;
     longitude /= 2;
-    char lonfirst = (char) ('A' + (longitude / 10));
-    char lonsecond = (char) ('0' + longitude % 10);
-    char lonthird = (char) ('A' + (longitude % 1) * 24);
+    char lonFirst = (char) ('A' + (longitude / 10));
+    char lonSecond = (char) ('0' + longitude % 10);
+    char lonThird = (char) ('A' + (longitude % 1) * 24);
 
     double latitude = latitudeIn + 90;
-    char latfirst = (char) ('A' + (latitude / 10));
-    char latsecond = (char) ('0' + latitude % 10);
-    char latthird = (char) ('A' + (latitude % 1) * 24);
+    char latFirst = (char) ('A' + (latitude / 10));
+    char latSecond = (char) ('0' + latitude % 10);
+    char latThird = (char) ('A' + (latitude % 1) * 24);
 
     StringBuilder sb = new StringBuilder();
-    sb.append(lonfirst);
-    sb.append(latfirst);
-    sb.append(lonsecond);
-    sb.append(latsecond);
-    sb.append(("" + lonthird).toLowerCase());
-    sb.append(("" + latthird).toLowerCase());
+    sb.append(lonFirst);
+    sb.append(latFirst);
+    sb.append(lonSecond);
+    sb.append(latSecond);
+    sb.append(("" + lonThird).toLowerCase());
+    sb.append(("" + latThird).toLowerCase());
 
     return sb.toString();
   }
