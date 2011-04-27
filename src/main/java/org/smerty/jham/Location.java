@@ -88,8 +88,8 @@ public class Location {
    */
   public static double extractLat(final String maidenheadIn) {
     String maidenhead = maidenheadIn.toUpperCase();
-    double latitude = -90 + 10 * (maidenhead.charAt(1) - 'A') + 1
-        * (maidenhead.charAt(3) - '0') + 2.5 / 60
+    double latitude = -90 + 10 * (maidenhead.charAt(1) - 'A')
+        + (maidenhead.charAt(3) - '0') + 2.5 / 60
         * (maidenhead.charAt(5) - 'A') + 2.5 / 60 / 2;
     return latitude;
   }
