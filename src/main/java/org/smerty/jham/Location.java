@@ -14,25 +14,25 @@ public class Location {
   private double latitude;
   private double longitude;
 
-  /** No argument constructor
+  /** No argument constructor.
    *
    */
   public Location() {
   }
 
   /**
-   * @param latitude
-   * @param longitude
+   * @param latitudeIn
+   * @param longitudeIn
    */
-  public Location(double latitude, double longitude) {
-    this.latitude = latitude;
-    this.longitude = longitude;
+  public Location(final double latitudeIn, final double longitudeIn) {
+    this.latitude = latitudeIn;
+    this.longitude = longitudeIn;
   }
 
   /**
    * @param maidenhead
    */
-  public Location(String maidenhead) {
+  public Location(final String maidenhead) {
     this.latitude = extractLat(maidenhead);
     this.longitude = extractLon(maidenhead);
   }
@@ -40,84 +40,89 @@ public class Location {
   /**
    * @return maidenhead locator string
    */
-  public String toMaidenhead() {
+  final public String toMaidenhead() {
     return toMaidenhead(this.latitude, this.longitude);
   }
 
   /**
-   * @param latitude
-   * @param longitude
+   * @param latitudeIn
+   * @param longitudeIn
    * @return maidenhead locator string
    */
-  public static String toMaidenhead(double latitude, double longitude) {
+  public static String toMaidenhead(final double latitudeIn,
+      final double longitudeIn) {
 
-    longitude += 180;
+    double longitude = longitudeIn + 180;
     longitude /= 2;
-    char lon_first = (char) ('A' + (Math.floor(longitude / 10)));
-    char lon_second = (char) ('0' + Math.floor(longitude % 10));
-    char lon_third = (char) ('A' + Math.floor((longitude % 1) * 24));
+    char lonfirst = (char) ('A' + (Math.floor(longitude / 10)));
+    char lonsecond = (char) ('0' + Math.floor(longitude % 10));
+    char lonthird = (char) ('A' + Math.floor((longitude % 1) * 24));
 
-    latitude += 90;
-    char lat_first = (char) ('A' + (Math.floor(latitude / 10)));
-    char lat_second = (char) ('0' + Math.floor(latitude % 10));
-    char lat_third = (char) ('A' + Math.floor((latitude % 1) * 24));
+    double latitude = latitudeIn + 90;
+    char latfirst = (char) ('A' + (Math.floor(latitude / 10)));
+    char latsecond = (char) ('0' + Math.floor(latitude % 10));
+    char latthird = (char) ('A' + Math.floor((latitude % 1) * 24));
 
     StringBuilder sb = new StringBuilder();
-    sb.append(lon_first);
-    sb.append(lat_first);
-    sb.append(lon_second);
-    sb.append(lat_second);
-    sb.append(("" + lon_third).toLowerCase());
-    sb.append(("" + lat_third).toLowerCase());
+    sb.append(lonfirst);
+    sb.append(latfirst);
+    sb.append(lonsecond);
+    sb.append(latsecond);
+    sb.append(("" + lonthird).toLowerCase());
+    sb.append(("" + latthird).toLowerCase());
 
     return sb.toString();
   }
 
   /**
-   * @param maidenhead
+   * @param maidenheadIn
    * @return latitude
    */
-  public static double extractLat(String maidenhead) {
-    maidenhead = maidenhead.toUpperCase();
-    double latitude = -90 + 10 * (maidenhead.charAt(1) - 'A') + 1 * (maidenhead.charAt(3) - '0') + 2.5 / 60 * (maidenhead.charAt(5) - 'A') + 2.5 / 60 / 2;
+  public static double extractLat(final String maidenheadIn) {
+    String maidenhead = maidenheadIn.toUpperCase();
+    double latitude = -90 + 10 * (maidenhead.charAt(1) - 'A') + 1
+        * (maidenhead.charAt(3) - '0') + 2.5 / 60
+        * (maidenhead.charAt(5) - 'A') + 2.5 / 60 / 2;
     return latitude;
   }
 
   /**
-   * @param maidenhead
+   * @param maidenheadIn
    * @return longitude
    */
-  public static double extractLon(String maidenhead) {
-    maidenhead = maidenhead.toUpperCase();
-    double longitude = -180 + 20 * (maidenhead.charAt(0) - 'A') + 2 * (maidenhead.charAt(2) - '0') + 5.0 / 60 * (maidenhead.charAt(4) - 'A') + 5.0 / 60 / 2;
+  public static double extractLon(final String maidenheadIn) {
+    String maidenhead = maidenheadIn.toUpperCase();
+    double longitude = -180 + 20 * (maidenhead.charAt(0) - 'A') + 2
+        * (maidenhead.charAt(2) - '0') + 5.0 / 60
+        * (maidenhead.charAt(4) - 'A') + 5.0 / 60 / 2;
     return longitude;
   }
 
   /**
    * @return latitude
    */
-  public double getLatitude() {
+  final public double getLatitude() {
     return latitude;
   }
 
   /**
    * @return longitude
    */
-  public double getLongitude() {
+  final public double getLongitude() {
     return longitude;
   }
 
   /**
-   * @param latitude
+   * @param latitudeIn
    */
-  public void setLatitude(double latitude) {
-    this.latitude = latitude;
+  final public void setLatitude(final double latitudeIn) {
+    this.latitude = latitudeIn;
   }
 
   /**
-   * @param longitude
+   * @param longitudeIn
    */
-  public void setLongitude(double longitude) {
-    this.longitude = longitude;
+  final public void setLongitude(final double longitudeIn) {
+    this.longitude = longitudeIn;
   }
 }
