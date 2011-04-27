@@ -11,7 +11,15 @@ package org.smerty.jham;
  */
 public class Location {
 
+  /**
+   * latitude in degrees, positive for northern hemisphere, negative for
+   * southern hemisphere.
+   */
   private double latitude;
+  /**
+   * longitude in degrees, positive for eastern hemisphere, negative for western
+   * hemisphere.
+   */
   private double longitude;
 
   /** No argument constructor.
@@ -21,8 +29,8 @@ public class Location {
   }
 
   /**
-   * @param latitudeIn
-   * @param longitudeIn
+   * @param latitudeIn initial latitude
+   * @param longitudeIn initial longitude
    */
   public Location(final double latitudeIn, final double longitudeIn) {
     this.latitude = latitudeIn;
@@ -30,7 +38,7 @@ public class Location {
   }
 
   /**
-   * @param maidenhead
+   * @param maidenhead used construct location from maidenhead locator string
    */
   public Location(final String maidenhead) {
     this.latitude = extractLat(maidenhead);
@@ -45,8 +53,8 @@ public class Location {
   }
 
   /**
-   * @param latitudeIn
-   * @param longitudeIn
+   * @param latitudeIn latitude component of locator string
+   * @param longitudeIn longitude component of locator string
    * @return maidenhead locator string
    */
   public static String toMaidenhead(final double latitudeIn,
@@ -75,7 +83,7 @@ public class Location {
   }
 
   /**
-   * @param maidenheadIn
+   * @param maidenheadIn locator string to be converted
    * @return latitude
    */
   public static double extractLat(final String maidenheadIn) {
@@ -87,7 +95,7 @@ public class Location {
   }
 
   /**
-   * @param maidenheadIn
+   * @param maidenheadIn locator string to be converted
    * @return longitude
    */
   public static double extractLon(final String maidenheadIn) {
@@ -113,14 +121,14 @@ public class Location {
   }
 
   /**
-   * @param latitudeIn
+   * @param latitudeIn north/south component of location
    */
   final public void setLatitude(final double latitudeIn) {
     this.latitude = latitudeIn;
   }
 
   /**
-   * @param longitudeIn
+   * @param longitudeIn east/west component of location
    */
   final public void setLongitude(final double longitudeIn) {
     this.longitude = longitudeIn;
