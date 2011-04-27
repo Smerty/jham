@@ -79,7 +79,9 @@ public class Location {
    */
   public static double extractLat(final String maidenheadIn) {
     String maidenhead = maidenheadIn.toUpperCase();
-    double latitude = -90 + 10 * (maidenhead.charAt(1) - 'A') + 1 * (maidenhead.charAt(3) - '0') + 2.5 / 60 * (maidenhead.charAt(5) - 'A') + 2.5 / 60 / 2;
+    double latitude = -90 + 10 * (maidenhead.charAt(1) - 'A') + 1
+        * (maidenhead.charAt(3) - '0') + 2.5 / 60
+        * (maidenhead.charAt(5) - 'A') + 2.5 / 60 / 2;
     return latitude;
   }
 
@@ -89,7 +91,9 @@ public class Location {
    */
   public static double extractLon(final String maidenheadIn) {
     String maidenhead = maidenheadIn.toUpperCase();
-    double longitude = -180 + 20 * (maidenhead.charAt(0) - 'A') + 2 * (maidenhead.charAt(2) - '0') + 5.0 / 60 * (maidenhead.charAt(4) - 'A') + 5.0 / 60 / 2;
+    double longitude = -180 + 20 * (maidenhead.charAt(0) - 'A') + 2
+        * (maidenhead.charAt(2) - '0') + 5.0 / 60
+        * (maidenhead.charAt(4) - 'A') + 5.0 / 60 / 2;
     return longitude;
   }
 
