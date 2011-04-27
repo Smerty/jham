@@ -49,7 +49,8 @@ public class Location {
    * @param longitudeIn
    * @return maidenhead locator string
    */
-  public static String toMaidenhead(final double latitudeIn, final double longitudeIn) {
+  public static String toMaidenhead(final double latitudeIn,
+      final double longitudeIn) {
 
     double longitude = longitudeIn + 180;
     longitude /= 2;
