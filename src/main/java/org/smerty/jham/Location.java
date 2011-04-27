@@ -53,22 +53,22 @@ public class Location {
 
     double longitude = longitudeIn + 180;
     longitude /= 2;
-    char lon_first = (char) ('A' + (Math.floor(longitude / 10)));
-    char lon_second = (char) ('0' + Math.floor(longitude % 10));
-    char lon_third = (char) ('A' + Math.floor((longitude % 1) * 24));
+    char lonfirst = (char) ('A' + (Math.floor(longitude / 10)));
+    char lonsecond = (char) ('0' + Math.floor(longitude % 10));
+    char lonthird = (char) ('A' + Math.floor((longitude % 1) * 24));
 
     double latitude = latitudeIn + 90;
-    char lat_first = (char) ('A' + (Math.floor(latitude / 10)));
-    char lat_second = (char) ('0' + Math.floor(latitude % 10));
-    char lat_third = (char) ('A' + Math.floor((latitude % 1) * 24));
+    char latfirst = (char) ('A' + (Math.floor(latitude / 10)));
+    char latsecond = (char) ('0' + Math.floor(latitude % 10));
+    char latthird = (char) ('A' + Math.floor((latitude % 1) * 24));
 
     StringBuilder sb = new StringBuilder();
-    sb.append(lon_first);
-    sb.append(lat_first);
-    sb.append(lon_second);
-    sb.append(lat_second);
-    sb.append(("" + lon_third).toLowerCase());
-    sb.append(("" + lat_third).toLowerCase());
+    sb.append(lonfirst);
+    sb.append(latfirst);
+    sb.append(lonsecond);
+    sb.append(latsecond);
+    sb.append(("" + lonthird).toLowerCase());
+    sb.append(("" + latthird).toLowerCase());
 
     return sb.toString();
   }
