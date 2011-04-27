@@ -48,7 +48,7 @@ public class Location {
   /**
    * @return maidenhead locator string
    */
-  final public String toMaidenhead() {
+  public final String toMaidenhead() {
     return toMaidenhead(this.latitude, this.longitude);
   }
 
@@ -62,22 +62,22 @@ public class Location {
 
     double longitude = longitudeIn + 180;
     longitude /= 2;
-    char lonfirst = (char) ('A' + (Math.floor(longitude / 10)));
-    char lonsecond = (char) ('0' + Math.floor(longitude % 10));
-    char lonthird = (char) ('A' + Math.floor((longitude % 1) * 24));
+    char lonFirst = (char) ('A' + (longitude / 10));
+    char lonSecond = (char) ('0' + longitude % 10);
+    char lonThird = (char) ('A' + (longitude % 1) * 24);
 
     double latitude = latitudeIn + 90;
-    char latfirst = (char) ('A' + (Math.floor(latitude / 10)));
-    char latsecond = (char) ('0' + Math.floor(latitude % 10));
-    char latthird = (char) ('A' + Math.floor((latitude % 1) * 24));
+    char latFirst = (char) ('A' + (latitude / 10));
+    char latSecond = (char) ('0' + latitude % 10);
+    char latThird = (char) ('A' + (latitude % 1) * 24);
 
     StringBuilder sb = new StringBuilder();
-    sb.append(lonfirst);
-    sb.append(latfirst);
-    sb.append(lonsecond);
-    sb.append(latsecond);
-    sb.append(("" + lonthird).toLowerCase());
-    sb.append(("" + latthird).toLowerCase());
+    sb.append(lonFirst);
+    sb.append(latFirst);
+    sb.append(lonSecond);
+    sb.append(latSecond);
+    sb.append(("" + lonThird).toLowerCase());
+    sb.append(("" + latThird).toLowerCase());
 
     return sb.toString();
   }
@@ -88,8 +88,8 @@ public class Location {
    */
   public static double extractLat(final String maidenheadIn) {
     String maidenhead = maidenheadIn.toUpperCase();
-    double latitude = -90 + 10 * (maidenhead.charAt(1) - 'A') + 1
-        * (maidenhead.charAt(3) - '0') + 2.5 / 60
+    double latitude = -90 + 10 * (maidenhead.charAt(1) - 'A')
+        + (maidenhead.charAt(3) - '0') + 2.5 / 60
         * (maidenhead.charAt(5) - 'A') + 2.5 / 60 / 2;
     return latitude;
   }
@@ -109,28 +109,28 @@ public class Location {
   /**
    * @return latitude
    */
-  final public double getLatitude() {
+  public final double getLatitude() {
     return latitude;
   }
 
   /**
    * @return longitude
    */
-  final public double getLongitude() {
+  public final double getLongitude() {
     return longitude;
   }
 
   /**
    * @param latitudeIn north/south component of location
    */
-  final public void setLatitude(final double latitudeIn) {
+  public final  void setLatitude(final double latitudeIn) {
     this.latitude = latitudeIn;
   }
 
   /**
    * @param longitudeIn east/west component of location
    */
-  final public void setLongitude(final double longitudeIn) {
+  public final void setLongitude(final double longitudeIn) {
     this.longitude = longitudeIn;
   }
 }
