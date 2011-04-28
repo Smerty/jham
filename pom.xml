@@ -111,6 +111,11 @@
     <url>http://github.com/Smerty/jham</url>
   </scm>
 
+  <ciManagement>
+    <system>jenkins</system>
+    <url>http://ci.smerty.org/</url>
+  </ciManagement>
+
   <parent>
     <groupId>org.sonatype.oss</groupId>
     <artifactId>oss-parent</artifactId>
