@@ -12,15 +12,15 @@ package org.smerty.jham;
 public class Location {
 
   /**
-   * Average earth radius in kilometers, IUGG definition
+   * Average earth radius in kilometers, IUGG definition.
    */
   private static final double AVG_EARTH_RADIUS_KM = 6371.009;
   /**
-   * Average earth radius in statute miles, IUGG definition
+   * Average earth radius in statute miles, IUGG definition.
    */
   private static final double AVG_EARTH_RADIUS_SM = 3958.761;
   /**
-   * Average earth radius in nautical miles, IUGG definition
+   * Average earth radius in nautical miles, IUGG definition.
    */
   private static final double AVG_EARTH_RADIUS_NM = 3440.069;
 
