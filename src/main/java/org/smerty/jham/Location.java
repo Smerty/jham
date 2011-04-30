@@ -24,21 +24,24 @@ public class Location {
    */
   private static final double AVG_EARTH_RADIUS_NM = 3440.069;
 
-  /**
-   * latitude in degrees, positive for northern hemisphere, negative for
-   * southern hemisphere.
-   */
-  private double latitude;
-  /**
-   * longitude in degrees, positive for eastern hemisphere, negative for western
-   * hemisphere.
-   */
-  private double longitude;
+  private Latitude latitude;
+  private Longitude longitude;
 
   /** No argument constructor.
    *
    */
   public Location() {
+    this.latitude = new Latitude();
+    this.longitude = new Longitude();
+  }
+
+  /**
+   * @param latitudeIn initial latitude
+   * @param longitudeIn initial longitude
+   */
+  public Location(final Latitude latitudeIn, final Longitude longitudeIn) {
+    this.latitude = latitudeIn;
+    this.longitude = longitudeIn;
   }
 
   /**
@@ -46,8 +49,8 @@ public class Location {
    * @param longitudeIn initial longitude
    */
   public Location(final double latitudeIn, final double longitudeIn) {
-    this.latitude = latitudeIn;
-    this.longitude = longitudeIn;
+    this.latitude = new Latitude(latitudeIn);
+    this.longitude = new Longitude(longitudeIn);
   }
 
   /**
@@ -69,8 +72,8 @@ public class Location {
   @Override
   public final int hashCode() {
     int hash = 1;
-    hash = hash * 17 + ((Double) latitude).hashCode();
-    hash = hash * 31 + ((Double) longitude).hashCode();
+    hash = hash * 17 + this.latitude.hashCode();
+    hash = hash * 31 + this.longitude.hashCode();
     return hash;
   }
 
@@ -78,7 +81,7 @@ public class Location {
    * @return maidenhead locator string
    */
   public final String toMaidenhead() {
-    return toMaidenhead(this.latitude, this.longitude);
+    return toMaidenhead(this.latitude.getDecimalDegrees(), this.longitude.getDecimalDegrees());
   }
 
   /**
@@ -115,51 +118,51 @@ public class Location {
    * @param maidenheadIn locator string to be converted
    * @return latitude
    */
-  public static double extractLat(final String maidenheadIn) {
+  public static Latitude extractLat(final String maidenheadIn) {
     String maidenhead = maidenheadIn.toUpperCase();
     double latitude = -90 + 10 * (maidenhead.charAt(1) - 'A')
         + (maidenhead.charAt(3) - '0') + 2.5 / 60
         * (maidenhead.charAt(5) - 'A') + 2.5 / 60 / 2;
-    return latitude;
+    return new Latitude(latitude);
   }
 
   /**
    * @param maidenheadIn locator string to be converted
    * @return longitude
    */
-  public static double extractLon(final String maidenheadIn) {
+  public static Longitude extractLon(final String maidenheadIn) {
     String maidenhead = maidenheadIn.toUpperCase();
     double longitude = -180 + 20 * (maidenhead.charAt(0) - 'A') + 2
         * (maidenhead.charAt(2) - '0') + 5.0 / 60
         * (maidenhead.charAt(4) - 'A') + 5.0 / 60 / 2;
-    return longitude;
+    return new Longitude(longitude);
   }
 
   /**
    * @return latitude
    */
-  public final double getLatitude() {
+  public final Latitude getLatitude() {
     return latitude;
   }
 
   /**
    * @return longitude
    */
-  public final double getLongitude() {
+  public final Longitude getLongitude() {
     return longitude;
   }
 
   /**
    * @param latitudeIn north/south component of location
    */
-  public final  void setLatitude(final double latitudeIn) {
+  public final  void setLatitude(final Latitude latitudeIn) {
     this.latitude = latitudeIn;
   }
 
   /**
    * @param longitudeIn east/west component of location
    */
-  public final void setLongitude(final double longitudeIn) {
+  public final void setLongitude(final Longitude longitudeIn) {
     this.longitude = longitudeIn;
   }
 
@@ -225,11 +228,11 @@ public class Location {
     if (loc1.equals(loc2)) {
       return 0;
     }
-    return Math.acos(Math.sin(loc1.getLatitude() * Math.PI / 180)
-        * Math.sin(loc2.getLatitude() * Math.PI / 180)
-        + Math.cos(loc1.latitude * Math.PI / 180)
-        * Math.cos(loc2.getLatitude() * Math.PI / 180)
-        * Math.cos(loc2.getLongitude() * Math.PI / 180 - loc1.getLongitude()
+    return Math.acos(Math.sin(loc1.getLatitude().getDecimalDegrees() * Math.PI / 180)
+        * Math.sin(loc2.getLatitude().getDecimalDegrees() * Math.PI / 180)
+        + Math.cos(loc1.latitude.getDecimalDegrees() * Math.PI / 180)
+        * Math.cos(loc2.getLatitude().getDecimalDegrees() * Math.PI / 180)
+        * Math.cos(loc2.getLongitude().getDecimalDegrees() * Math.PI / 180 - loc1.getLongitude().getDecimalDegrees()
             * Math.PI / 180))
         * radius;
   }
