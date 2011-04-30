@@ -18,6 +18,13 @@ public class LongtitudeTest {
   }
 
   @Test
+  public void testGetterSetter() {
+    Longitude lon = new Longitude();
+    lon.setDecimalDegrees(SIMPLE_LON_VALUE);
+    assertEquals(lon.getDecimalDegrees(), SIMPLE_LON_VALUE, 0);
+  }
+
+  @Test
   public void testEquals() {
     Longitude lon = new Longitude(SIMPLE_LON_VALUE);
     Longitude lon2 = new Longitude(SIMPLE_LON_VALUE);

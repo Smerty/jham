@@ -18,6 +18,13 @@ public class LatitudeTest {
   }
 
   @Test
+  public void testGetterSetter() {
+    Latitude lat = new Latitude();
+    lat.setDecimalDegrees(SIMPLE_LAT_VALUE);
+    assertEquals(lat.getDecimalDegrees(), SIMPLE_LAT_VALUE, 0);
+  }
+
+  @Test
   public void testEquals() {
     Latitude lat = new Latitude(SIMPLE_LAT_VALUE);
     Latitude lat2 = new Latitude(SIMPLE_LAT_VALUE);
