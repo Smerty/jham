@@ -8,7 +8,7 @@ public class Longitude {
    */
   private double decimalDegrees;
 
-  /** no arguement constructor
+  /** no argument constructor.
    *
    */
   public Longitude() {
@@ -22,7 +22,7 @@ public class Longitude {
   }
 
   @Override
-  public final boolean equals(Object obj) {
+  public final boolean equals(final Object obj) {
     if (obj instanceof Longitude) {
       return ((Longitude) obj).hashCode() == this.hashCode();
     }
@@ -46,7 +46,7 @@ public class Longitude {
   /**
    * @param decimalDegreesIn decimal value of longitude
    */
-  public final void setDecimalDegrees(double decimalDegreesIn) {
+  public final void setDecimalDegrees(final double decimalDegreesIn) {
     this.decimalDegrees = decimalDegreesIn;
   }
 }

@@ -8,7 +8,7 @@ public class Latitude {
    */
   private double decimalDegrees;
 
-  /** no argument constructor
+  /** no argument constructor.
    *
    */
   public Latitude() {
