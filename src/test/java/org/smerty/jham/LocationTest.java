@@ -1,6 +1,7 @@
 package org.smerty.jham;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -131,5 +132,18 @@ public class LocationTest {
       assertTrue((percentError(distance, distances[n]
           * NAUTICALMILES_PER_KILOMETER) < TOLERATED_PERCENT_ERROR));
     }
+  }
+
+  @Test
+  public void testEquals() {
+    Location loc = new Location(locators[0]);
+    Location loc2 = new Location(locators[0]);
+    Location loc3 = new Location(locators[1]);
+    assertFalse(loc.equals(new String("hello")));
+    assertFalse(loc.equals(loc3));
+    assertTrue(loc.equals(loc));
+    assertTrue(loc.equals(loc2));
+    assertTrue(loc2.equals(loc));
+    assertFalse(loc.equals(null));
   }
 }
