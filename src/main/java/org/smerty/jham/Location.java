@@ -52,10 +52,17 @@ public class Location {
   @Override
   public boolean equals(Object obj) {
     if (obj instanceof Location) {
-      return (((Location) obj).getLatitude() == this.getLatitude())
-          && (((Location) obj).getLongitude() == this.getLongitude());
+      return ((Location) obj).hashCode() == this.hashCode();
     }
     return false;
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 1;
+    hash = hash * 17 + ((Double) latitude).hashCode();
+    hash = hash * 31 + ((Double) longitude).hashCode();
+    return hash;
   }
 
   /**
