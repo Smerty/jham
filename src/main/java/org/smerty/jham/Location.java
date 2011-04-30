@@ -11,6 +11,10 @@ package org.smerty.jham;
  */
 public class Location {
 
+  private static final double AVG_EARTH_RADIUS_KM = 6371.009;
+  private static final double AVG_EARTH_RADIUS_SM = 3958.761;
+  private static final double AVG_EARTH_RADIUS_NM = 3440.069;
+
   /**
    * latitude in degrees, positive for northern hemisphere, negative for
    * southern hemisphere.
@@ -43,6 +47,15 @@ public class Location {
   public Location(final String maidenhead) {
     this.latitude = extractLat(maidenhead);
     this.longitude = extractLon(maidenhead);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj instanceof Location) {
+      return (((Location) obj).getLatitude() == this.getLatitude())
+          && (((Location) obj).getLongitude() == this.getLongitude());
+    }
+    return false;
   }
 
   /**
@@ -132,5 +145,76 @@ public class Location {
    */
   public final void setLongitude(final double longitudeIn) {
     this.longitude = longitudeIn;
+  }
+
+  /**
+   * @param loc2 second location
+   * @return
+   */
+  public double getDistanceMi(final Location loc2) {
+    return getDistanceMi(this, loc2);
+  }
+
+  /**
+   * @param loc2 second location
+   * @return great circle distance in kilometers
+   */
+  public double getDistanceKm(final Location loc2) {
+    return getDistanceKm(this, loc2);
+  }
+
+  /**
+   * @param loc2 second location
+   * @return great circle distance in nautical miles
+   */
+  public double getDistanceNm(final Location loc2) {
+    return getDistanceNm(this, loc2);
+  }
+
+  /**
+   * @param loc1 first location
+   * @param loc2 second location
+   * @return great circle distance in miles
+   */
+  public static double getDistanceMi(final Location loc1, final Location loc2) {
+    return getDistance(loc1, loc2, AVG_EARTH_RADIUS_SM);
+  }
+
+  /**
+   * @param loc1 first location
+   * @param loc2 second location
+   * @return great circle distance in kilometers
+   */
+  private static double getDistanceKm(final Location loc1, final Location loc2) {
+    return getDistance(loc1, loc2, AVG_EARTH_RADIUS_KM);
+  }
+
+  /**
+   * @param loc1 first location
+   * @param loc2 second location
+   * @return great circle distance in nautical miles
+   */
+  private static double getDistanceNm(final Location loc1, final Location loc2) {
+    return getDistance(loc1, loc2, AVG_EARTH_RADIUS_NM);
+  }
+
+  /**
+   * @param loc1 first location
+   * @param loc2 second location
+   * @param radius radius of the earth in the units desired for result
+   * @return great circle distance between the two locations, result units same of the radius units
+   */
+  private static double getDistance(final Location loc1, final Location loc2,
+      final double radius) {
+    if (loc1.equals(loc2)) {
+      return 0;
+    }
+    return Math.acos(Math.sin(loc1.getLatitude() * Math.PI / 180)
+        * Math.sin(loc2.getLatitude() * Math.PI / 180)
+        + Math.cos(loc1.latitude * Math.PI / 180)
+        * Math.cos(loc2.getLatitude() * Math.PI / 180)
+        * Math.cos(loc2.getLongitude() * Math.PI / 180 - loc1.getLongitude()
+            * Math.PI / 180))
+        * radius;
   }
 }
