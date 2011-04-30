@@ -13,6 +13,7 @@ public class LocationTest {
   private static double[] longitudes = { -121.791, -0.458, 60.09951, 60.08436, 60.1656, -51.1908 };
 
   private static double[] distances = { 13896, 4345, 0 };
+  private static double[] bearings = { 171, 73, Double.NaN, Double.NaN, 301, 295 };
 
   private static final double STATUTEMILES_PER_KILOMETER = 0.6214;
   private static final double NAUTICALMILES_PER_KILOMETER = 0.54;
@@ -25,6 +26,9 @@ public class LocationTest {
 
   public static double percentError(double result, double actual) {
     if (result == 0 && actual == 0) {
+      return 0;
+    }
+    if (((Double) result).isNaN() && ((Double) actual).isNaN()) {
       return 0;
     }
     return Math.abs(result - actual) / actual;
@@ -136,6 +140,16 @@ public class LocationTest {
       double distance = loc1.getDistanceNm(loc2);
       assertTrue((percentError(distance, distances[n]
           * NAUTICALMILES_PER_KILOMETER) < TOLERATED_PERCENT_ERROR));
+    }
+  }
+
+  @Test
+  public void testGetBearing() throws Exception {
+    for (int n = 0; n < locators.length / 2; n++) {
+      Location loc1 = new Location(locators[n]);
+      Location loc2 = new Location(locators[locators.length - 1 - n]);
+      double bearing = loc1.getBearing(loc2);
+      assertTrue((percentError(bearing, bearings[n]) < TOLERATED_PERCENT_ERROR));
     }
   }
 
