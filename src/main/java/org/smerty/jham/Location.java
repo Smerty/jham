@@ -24,7 +24,13 @@ public class Location {
    */
   private static final double AVG_EARTH_RADIUS_NM = 3440.069;
 
+  /**
+   * latitude of location.
+   */
   private Latitude latitude;
+  /**
+   * longitude of location.
+   */
   private Longitude longitude;
 
   /** No argument constructor.
@@ -81,7 +87,8 @@ public class Location {
    * @return maidenhead locator string
    */
   public final String toMaidenhead() {
-    return toMaidenhead(this.latitude.getDecimalDegrees(), this.longitude.getDecimalDegrees());
+    return toMaidenhead(this.latitude.getDecimalDegrees(),
+        this.longitude.getDecimalDegrees());
   }
 
   /**

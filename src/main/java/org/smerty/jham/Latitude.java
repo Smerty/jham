@@ -8,6 +8,9 @@ public class Latitude {
    */
   private double decimalDegrees;
 
+  /** no argument constructor
+   *
+   */
   public Latitude() {
   }
 
@@ -19,7 +22,7 @@ public class Latitude {
   }
 
   @Override
-  public boolean equals(Object obj) {
+  public final boolean equals(final Object obj) {
     if (obj instanceof Latitude) {
       return ((Latitude) obj).hashCode() == this.hashCode();
     }
@@ -27,23 +30,23 @@ public class Latitude {
   }
 
   @Override
-  public int hashCode() {
+  public final int hashCode() {
     int hash = 1;
-    hash = hash * 17 + ((Double)this.decimalDegrees).hashCode();
+    hash = hash * 17 + ((Double) this.decimalDegrees).hashCode();
     return hash;
   }
 
   /**
    * @return decimal value of latitude
    */
-  public double getDecimalDegrees() {
+  public final double getDecimalDegrees() {
     return decimalDegrees;
   }
 
   /**
-   * @param latitudeIn decimal value of latitude
+   * @param decimalDegreesIn decimal value of latitude
    */
-  public void setDecimalDegrees(final double latitudeIn) {
-    this.decimalDegrees = latitudeIn;
+  public final void setDecimalDegrees(final double decimalDegreesIn) {
+    this.decimalDegrees = decimalDegreesIn;
   }
 }
