@@ -243,4 +243,35 @@ public class Location {
             * Math.PI / 180))
         * radius;
   }
+
+  /**
+   * @param loc2 destination location
+   * @return bearing in degrees
+   */
+  public final double getBearing(final Location loc2) {
+    return getBearing(this, loc2);
+  }
+
+  /**
+   * @param loc1 source location
+   * @param loc2 destination location
+   * @return bearing in degrees
+   */
+  public static double getBearing(final Location loc1, final Location loc2) {
+    if (loc1.equals(loc2)) {
+      return Double.NaN;
+    }
+
+    double dLon = (loc2.getLongitude().getDecimalDegrees() - loc1
+        .getLongitude().getDecimalDegrees()) * Math.PI / 180;
+
+    double y = Math.sin(dLon)
+        * Math.cos(loc2.getLatitude().getDecimalDegrees() * Math.PI / 180);
+    double x = Math.cos(loc1.getLatitude().getDecimalDegrees() * Math.PI / 180)
+        * Math.sin(loc2.getLatitude().getDecimalDegrees() * Math.PI / 180)
+        - Math.sin(loc1.getLatitude().getDecimalDegrees() * Math.PI / 180)
+        * Math.cos(loc2.getLatitude().getDecimalDegrees() * Math.PI / 180)
+        * Math.cos(dLon);
+    return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+  }
 }
