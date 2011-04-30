@@ -156,7 +156,7 @@ public class Location {
 
   /**
    * @param loc2 second location
-   * @return
+   * @return great circle distance in miles
    */
   public double getDistanceMi(final Location loc2) {
     return getDistanceMi(this, loc2);
