@@ -148,7 +148,7 @@ public class LocationTest {
     for (int n = 0; n < locators.length / 2; n++) {
       Location loc1 = new Location(locators[n]);
       Location loc2 = new Location(locators[locators.length - 1 - n]);
-      double bearing = Location.getBearing(loc1, loc2);
+      double bearing = loc1.getBearing(loc2);
       assertTrue((percentError(bearing, bearings[n]) < TOLERATED_PERCENT_ERROR));
     }
   }
