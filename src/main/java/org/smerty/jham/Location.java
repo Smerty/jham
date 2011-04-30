@@ -50,7 +50,7 @@ public class Location {
   }
 
   @Override
-  public boolean equals(Object obj) {
+  public final boolean equals(final Object obj) {
     if (obj instanceof Location) {
       return ((Location) obj).hashCode() == this.hashCode();
     }
@@ -58,7 +58,7 @@ public class Location {
   }
 
   @Override
-  public int hashCode() {
+  public final int hashCode() {
     int hash = 1;
     hash = hash * 17 + ((Double) latitude).hashCode();
     hash = hash * 31 + ((Double) longitude).hashCode();
@@ -158,7 +158,7 @@ public class Location {
    * @param loc2 second location
    * @return great circle distance in miles
    */
-  public double getDistanceMi(final Location loc2) {
+  public final double getDistanceMi(final Location loc2) {
     return getDistanceMi(this, loc2);
   }
 
@@ -166,7 +166,7 @@ public class Location {
    * @param loc2 second location
    * @return great circle distance in kilometers
    */
-  public double getDistanceKm(final Location loc2) {
+  public final double getDistanceKm(final Location loc2) {
     return getDistanceKm(this, loc2);
   }
 
@@ -174,7 +174,7 @@ public class Location {
    * @param loc2 second location
    * @return great circle distance in nautical miles
    */
-  public double getDistanceNm(final Location loc2) {
+  public final double getDistanceNm(final Location loc2) {
     return getDistanceNm(this, loc2);
   }
 
@@ -183,7 +183,7 @@ public class Location {
    * @param loc2 second location
    * @return great circle distance in miles
    */
-  public static double getDistanceMi(final Location loc1, final Location loc2) {
+  public final static double getDistanceMi(final Location loc1, final Location loc2) {
     return getDistance(loc1, loc2, AVG_EARTH_RADIUS_SM);
   }
 
@@ -192,7 +192,7 @@ public class Location {
    * @param loc2 second location
    * @return great circle distance in kilometers
    */
-  private static double getDistanceKm(final Location loc1, final Location loc2) {
+  private final static double getDistanceKm(final Location loc1, final Location loc2) {
     return getDistance(loc1, loc2, AVG_EARTH_RADIUS_KM);
   }
 
@@ -201,7 +201,7 @@ public class Location {
    * @param loc2 second location
    * @return great circle distance in nautical miles
    */
-  private static double getDistanceNm(final Location loc1, final Location loc2) {
+  private final static double getDistanceNm(final Location loc1, final Location loc2) {
     return getDistance(loc1, loc2, AVG_EARTH_RADIUS_NM);
   }
 
@@ -211,7 +211,7 @@ public class Location {
    * @param radius radius of the earth in the units desired for result
    * @return great circle distance between the two locations, result units same of the radius units
    */
-  private static double getDistance(final Location loc1, final Location loc2,
+  private final static double getDistance(final Location loc1, final Location loc2,
       final double radius) {
     if (loc1.equals(loc2)) {
       return 0;
