@@ -1,14 +1,18 @@
 package org.smerty.jham;
 
 
+/**
+ * Latitude.
+ *
+ * @author Paul Picazo <ppicazo@gmail.com>
+ *
+ */
 public class Latitude {
 
   /**
    * latitude in degrees, positive for northern hemisphere, negative for
    * southern hemisphere.
    */
-  //private double decimalDegrees;
-
   private Angle latitudeAngle;
 
   /** no argument constructor.
@@ -46,10 +50,16 @@ public class Latitude {
     return this.latitudeAngle.toDegrees();
   }
 
+  /**
+   * @return angle
+   */
   public Angle getLatitudeAngle() {
     return latitudeAngle;
   }
 
+  /**
+   * @param latitudeAngleIn input
+   */
   public void setLatitudeAngle(Angle latitudeAngleIn) {
     this.latitudeAngle = latitudeAngleIn;
   }

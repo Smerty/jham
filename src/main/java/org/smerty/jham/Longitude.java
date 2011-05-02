@@ -1,14 +1,18 @@
 package org.smerty.jham;
 
 
+/**
+ * Longitude.
+ *
+ * @author Paul Picazo <ppicazo@gmail.com>
+ *
+ */
 public class Longitude {
 
   /**
    * longitude in degrees, positive for eastern hemisphere, negative for western
    * hemisphere.
    */
-  //private double decimalDegrees;
-
   private Angle longitudeAngle;
 
   /** no argument constructor.
@@ -46,10 +50,16 @@ public class Longitude {
     return this.longitudeAngle.toDegrees();
   }
 
+  /**
+   * @return angle
+   */
   public Angle getLongitudeAngle() {
     return longitudeAngle;
   }
 
+  /**
+   * @param longitudeAngleIn input
+   */
   public void setLongitudeAngle(Angle longitudeAngleIn) {
     this.longitudeAngle = longitudeAngleIn;
   }
