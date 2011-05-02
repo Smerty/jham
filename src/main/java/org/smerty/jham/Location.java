@@ -236,12 +236,12 @@ public class Location {
     if (loc1.equals(loc2)) {
       return 0;
     }
-    return Math.acos(Math.sin(loc1.getLatitude().getDecimalDegrees() * Math.PI / 180)
-        * Math.sin(loc2.getLatitude().getDecimalDegrees() * Math.PI / 180)
-        + Math.cos(loc1.latitude.getDecimalDegrees() * Math.PI / 180)
-        * Math.cos(loc2.getLatitude().getDecimalDegrees() * Math.PI / 180)
-        * Math.cos(loc2.getLongitude().getDecimalDegrees() * Math.PI / 180 - loc1.getLongitude().getDecimalDegrees()
-            * Math.PI / 180))
+    return Math.acos(Math.sin(loc1.getLatitude().getLatitudeAngle().getRadians())
+        * Math.sin(loc2.getLatitude().getLatitudeAngle().getRadians())
+        + Math.cos(loc1.getLatitude().getLatitudeAngle().getRadians())
+        * Math.cos(loc2.getLatitude().getLatitudeAngle().getRadians())
+        * Math.cos(loc2.getLongitude().getLongitudeAngle().getRadians() - loc1.getLongitude().getLongitudeAngle().getRadians()
+            ))
         * radius;
   }
 
@@ -263,16 +263,16 @@ public class Location {
       return Double.NaN;
     }
 
-    double dLon = (loc2.getLongitude().getDecimalDegrees() - loc1
-        .getLongitude().getDecimalDegrees()) * Math.PI / 180;
+    double dLon = loc2.getLongitude().getLongitudeAngle().getRadians() - loc1
+        .getLongitude().getLongitudeAngle().getRadians();
 
     double y = Math.sin(dLon)
-        * Math.cos(loc2.getLatitude().getDecimalDegrees() * Math.PI / 180);
-    double x = Math.cos(loc1.getLatitude().getDecimalDegrees() * Math.PI / 180)
-        * Math.sin(loc2.getLatitude().getDecimalDegrees() * Math.PI / 180)
-        - Math.sin(loc1.getLatitude().getDecimalDegrees() * Math.PI / 180)
-        * Math.cos(loc2.getLatitude().getDecimalDegrees() * Math.PI / 180)
+        * Math.cos(loc2.getLatitude().getLatitudeAngle().getRadians());
+    double x = Math.cos(loc1.getLatitude().getLatitudeAngle().getRadians())
+        * Math.sin(loc2.getLatitude().getLatitudeAngle().getRadians())
+        - Math.sin(loc1.getLatitude().getLatitudeAngle().getRadians())
+        * Math.cos(loc2.getLatitude().getLatitudeAngle().getRadians())
         * Math.cos(dLon);
-    return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+    return (Angle.radiansToDegrees(Math.atan2(y, x)) + 360) % 360;
   }
 }
