@@ -1,5 +1,6 @@
 package org.smerty.jham;
 
+
 /**
  * Location class with methods allowing conversion to and from Maidenhead
  * locator (grid squares) based off of
@@ -55,8 +56,8 @@ public class Location {
    * @param longitudeIn initial longitude
    */
   public Location(final double latitudeIn, final double longitudeIn) {
-    this.latitude = new Latitude(latitudeIn);
-    this.longitude = new Longitude(longitudeIn);
+    this.latitude = new Latitude(Angle.fromDegrees(latitudeIn));
+    this.longitude = new Longitude(Angle.fromDegrees(longitudeIn));
   }
 
   /**
@@ -130,7 +131,7 @@ public class Location {
     double latitude = -90 + 10 * (maidenhead.charAt(1) - 'A')
         + (maidenhead.charAt(3) - '0') + 2.5 / 60
         * (maidenhead.charAt(5) - 'A') + 2.5 / 60 / 2;
-    return new Latitude(latitude);
+    return new Latitude(Angle.fromDegrees(latitude));
   }
 
   /**
@@ -142,7 +143,7 @@ public class Location {
     double longitude = -180 + 20 * (maidenhead.charAt(0) - 'A') + 2
         * (maidenhead.charAt(2) - '0') + 5.0 / 60
         * (maidenhead.charAt(4) - 'A') + 5.0 / 60 / 2;
-    return new Longitude(longitude);
+    return new Longitude(Angle.fromDegrees(longitude));
   }
 
   /**

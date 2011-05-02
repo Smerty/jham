@@ -1,8 +1,8 @@
 package org.smerty.jham;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.smerty.jham.Passert.assertMaxError;
 
 import org.junit.Test;
 
@@ -13,22 +13,29 @@ public class LatitudeTest {
 
   @Test
   public void testIt() {
-    Latitude lat = new Latitude(SIMPLE_LAT_VALUE);
-    assertEquals(lat.getDecimalDegrees(), SIMPLE_LAT_VALUE, 0);
+    Latitude lat = new Latitude(Angle.fromDegrees(SIMPLE_LAT_VALUE));
+    assertMaxError(SIMPLE_LAT_VALUE, lat.getDecimalDegrees(), Passert.SMALL_ERROR);
+  }
+
+  @Test
+  public void testItDeep() {
+    Latitude lat = new Latitude(Angle.fromDegrees(SIMPLE_LAT_VALUE));
+    Latitude lat2 = new Latitude(Angle.fromDegrees(lat.getDecimalDegrees()));
+    assertMaxError(lat.getDecimalDegrees(), lat2.getDecimalDegrees(), Passert.NO_ERROR);
   }
 
   @Test
   public void testGetterSetter() {
     Latitude lat = new Latitude();
-    lat.setDecimalDegrees(SIMPLE_LAT_VALUE);
-    assertEquals(lat.getDecimalDegrees(), SIMPLE_LAT_VALUE, 0);
+    lat.setLatitudeAngle(Angle.fromDegrees(SIMPLE_LAT_VALUE));
+    assertMaxError(SIMPLE_LAT_VALUE, lat.getDecimalDegrees(), Passert.SMALL_ERROR);
   }
 
   @Test
   public void testEquals() {
-    Latitude lat = new Latitude(SIMPLE_LAT_VALUE);
-    Latitude lat2 = new Latitude(SIMPLE_LAT_VALUE);
-    Latitude lat3 = new Latitude(DIFFERENT_LAT_VALUE);
+    Latitude lat = new Latitude(Angle.fromDegrees(SIMPLE_LAT_VALUE));
+    Latitude lat2 = new Latitude(Angle.fromDegrees(SIMPLE_LAT_VALUE));
+    Latitude lat3 = new Latitude(Angle.fromDegrees(DIFFERENT_LAT_VALUE));
     assertTrue(lat.equals(lat));
     assertTrue(lat.equals(lat2));
     assertTrue(lat2.equals(lat));
