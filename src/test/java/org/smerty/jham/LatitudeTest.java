@@ -8,8 +8,8 @@ import org.junit.Test;
 
 public class LatitudeTest {
 
-  private static final double SIMPLE_LAT_VALUE = 32.5;
-  private static final double DIFFERENT_LAT_VALUE = 2.5;
+  private static final double SIMPLE_LAT_VALUE = 32.533;
+  private static final double DIFFERENT_LAT_VALUE = 2.571;
 
   @Test
   public void testIt() {

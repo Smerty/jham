@@ -16,7 +16,8 @@ public class Passert {
     if (pe > maxError) {
       fail("expected: " + expected + " , actual: " + actual + " %error: " + pe);
     }
-    System.out.println("%error: " + pe);
+    //System.out.println("%error: " + pe);
+    //System.out.println(pe);
   }
 
   public static double percentError(double expected, double actual) {
