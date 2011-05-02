@@ -1,24 +1,32 @@
 package org.smerty.jham;
 
+/**
+ * Longitude.
+ *
+ * @author Paul Picazo <ppicazo@gmail.com>
+ *
+ */
 public class Longitude {
 
   /**
    * longitude in degrees, positive for eastern hemisphere, negative for western
    * hemisphere.
    */
-  private double decimalDegrees;
+  private Angle longitudeAngle;
 
-  /** no argument constructor.
+  /**
+   * no argument constructor.
    *
    */
   public Longitude() {
   }
 
   /**
-   * @param decimalDegreesIn value of longitude
+   * @param angleIn
+   *          value of longitude
    */
-  public Longitude(final double decimalDegreesIn) {
-    this.decimalDegrees = decimalDegreesIn;
+  public Longitude(final Angle angleIn) {
+    this.longitudeAngle = angleIn;
   }
 
   @Override
@@ -32,7 +40,7 @@ public class Longitude {
   @Override
   public final int hashCode() {
     int hash = 1;
-    hash = hash * 17 + ((Double) this.decimalDegrees).hashCode();
+    hash = hash * 17 + this.longitudeAngle.hashCode();
     return hash;
   }
 
@@ -40,13 +48,21 @@ public class Longitude {
    * @return decimal value of longitude
    */
   public final double getDecimalDegrees() {
-    return decimalDegrees;
+    return this.longitudeAngle.toDegrees();
   }
 
   /**
-   * @param decimalDegreesIn decimal value of longitude
+   * @return angle
    */
-  public final void setDecimalDegrees(final double decimalDegreesIn) {
-    this.decimalDegrees = decimalDegreesIn;
+  public Angle getLongitudeAngle() {
+    return longitudeAngle;
+  }
+
+  /**
+   * @param longitudeAngleIn
+   *          input
+   */
+  public void setLongitudeAngle(Angle longitudeAngleIn) {
+    this.longitudeAngle = longitudeAngleIn;
   }
 }
