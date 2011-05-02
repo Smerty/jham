@@ -44,4 +44,11 @@ public class LatitudeTest {
     assertFalse(lat.equals(new String("hello")));
   }
 
+  @Test
+  public void testAngleGetSet() {
+    Latitude lat = new Latitude();
+    lat.setLatitudeAngle(Angle.fromDegrees(SIMPLE_LAT_VALUE));
+    assertMaxError(SIMPLE_LAT_VALUE, lat.getLatitudeAngle().toDegrees(), Passert.NO_ERROR);
+  }
+
 }

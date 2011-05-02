@@ -8,16 +8,12 @@ import org.junit.Test;
 
 public class LongtitudeTest {
 
-//  private static final BigDecimal SIMPLE_LON_VALUE = new BigDecimal(132.5);
-//  private static final BigDecimal DIFFERENT_LON_VALUE = new BigDecimal(12.5);
-
   private static final double SIMPLE_LON_VALUE = 132.5;
   private static final double DIFFERENT_LON_VALUE = 12.5;
 
   @Test
   public void testIt() {
     Longitude lon = new Longitude(Angle.fromDegrees(SIMPLE_LON_VALUE));
-    //assertEquals(lon.getDecimalDegrees(), SIMPLE_LON_VALUE, 0);
     assertMaxError(SIMPLE_LON_VALUE, lon.getDecimalDegrees(), Passert.SMALL_ERROR);
   }
 
@@ -39,6 +35,13 @@ public class LongtitudeTest {
     assertFalse(lon.equals(lon3));
     assertFalse(lon.equals(null));
     assertFalse(lon.equals(new String("hello")));
+  }
+
+  @Test
+  public void testAngleGetSet() {
+    Longitude lon = new Longitude();
+    lon.setLongitudeAngle(Angle.fromDegrees(SIMPLE_LON_VALUE));
+    assertMaxError(SIMPLE_LON_VALUE, lon.getLongitudeAngle().toDegrees(), Passert.NO_ERROR);
   }
 
 }
