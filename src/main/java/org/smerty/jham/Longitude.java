@@ -1,6 +1,5 @@
 package org.smerty.jham;
 
-
 /**
  * Longitude.
  *
@@ -15,14 +14,16 @@ public class Longitude {
    */
   private Angle longitudeAngle;
 
-  /** no argument constructor.
+  /**
+   * no argument constructor.
    *
    */
   public Longitude() {
   }
 
   /**
-   * @param angleIn value of longitude
+   * @param angleIn
+   *          value of longitude
    */
   public Longitude(final Angle angleIn) {
     this.longitudeAngle = angleIn;
@@ -58,7 +59,8 @@ public class Longitude {
   }
 
   /**
-   * @param longitudeAngleIn input
+   * @param longitudeAngleIn
+   *          input
    */
   public void setLongitudeAngle(Angle longitudeAngleIn) {
     this.longitudeAngle = longitudeAngleIn;

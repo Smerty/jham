@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 /**
- * Allow for easy use of angles without messy conversions
- * to and from degrees and radians.
+ * Allow for easy use of angles without messy conversions to and from degrees
+ * and radians.
  *
  * @author Paul Picazo <ppicazo@gmail.com>
  *
@@ -22,15 +22,16 @@ public class Angle {
    */
   private BigDecimal radians;
 
-  /** no argument constructor.
+  /**
+   * no argument constructor.
    *
    */
   public Angle() {
   }
 
-
   /**
-   * @param radiansIn angle in radians
+   * @param radiansIn
+   *          angle in radians
    */
   public Angle(final double radiansIn) {
     this.radians = new BigDecimal(radiansIn);
@@ -52,17 +53,20 @@ public class Angle {
   }
 
   /**
-   * @param degrees angle in degrees
+   * @param degrees
+   *          angle in degrees
    * @return angle
    */
   public static Angle fromDegrees(final double degrees) {
     Angle angle = new Angle();
-    angle.radians = degreesToRadians(new BigDecimal(degrees), MathContext.DECIMAL128);
+    angle.radians = degreesToRadians(new BigDecimal(degrees),
+        MathContext.DECIMAL128);
     return angle;
   }
 
   /**
-   * @param radiansIn the radians to set
+   * @param radiansIn
+   *          the radians to set
    */
   public void setRadians(final double radiansIn) {
     this.radians = new BigDecimal(radiansIn);
@@ -83,36 +87,46 @@ public class Angle {
   }
 
   /**
-   * @param radians input
+   * @param radians
+   *          input
    * @return degrees
    */
   public static double radiansToDegrees(final double radians) {
-    return radiansToDegrees(new BigDecimal(radians), MathContext.DECIMAL128).doubleValue();
+    return radiansToDegrees(new BigDecimal(radians), MathContext.DECIMAL128)
+        .doubleValue();
   }
 
   /**
-   * @param degrees input
+   * @param degrees
+   *          input
    * @return radians
    */
   public static double degreesToRadians(final double degrees) {
-    return degreesToRadians(new BigDecimal(degrees), MathContext.DECIMAL128).doubleValue();
+    return degreesToRadians(new BigDecimal(degrees), MathContext.DECIMAL128)
+        .doubleValue();
   }
 
   /**
-   * @param radians input
-   * @param mc MathContext for divsion
+   * @param radians
+   *          input
+   * @param mc
+   *          MathContext for divsion
    * @return degrees
    */
-  private static BigDecimal radiansToDegrees(final BigDecimal radians, final MathContext mc) {
-      return radians.multiply(new BigDecimal(180)).divide(BIG_PI, mc);
+  private static BigDecimal radiansToDegrees(final BigDecimal radians,
+      final MathContext mc) {
+    return radians.multiply(new BigDecimal(180)).divide(BIG_PI, mc);
   }
 
   /**
-   * @param degrees input
-   * @param mc MathContext for divsion
+   * @param degrees
+   *          input
+   * @param mc
+   *          MathContext for divsion
    * @return radians
    */
-  private static BigDecimal degreesToRadians(final BigDecimal degrees, final MathContext mc) {
-      return degrees.divide(new BigDecimal(180), mc).multiply(BIG_PI);
+  private static BigDecimal degreesToRadians(final BigDecimal degrees,
+      final MathContext mc) {
+    return degrees.divide(new BigDecimal(180), mc).multiply(BIG_PI);
   }
 }

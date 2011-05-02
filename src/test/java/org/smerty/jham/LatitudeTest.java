@@ -14,21 +14,24 @@ public class LatitudeTest {
   @Test
   public void testIt() {
     Latitude lat = new Latitude(Angle.fromDegrees(SIMPLE_LAT_VALUE));
-    assertMaxError(SIMPLE_LAT_VALUE, lat.getDecimalDegrees(), Passert.SMALL_ERROR);
+    assertMaxError(SIMPLE_LAT_VALUE, lat.getDecimalDegrees(),
+        Passert.SMALL_ERROR);
   }
 
   @Test
   public void testItDeep() {
     Latitude lat = new Latitude(Angle.fromDegrees(SIMPLE_LAT_VALUE));
     Latitude lat2 = new Latitude(Angle.fromDegrees(lat.getDecimalDegrees()));
-    assertMaxError(lat.getDecimalDegrees(), lat2.getDecimalDegrees(), Passert.NO_ERROR);
+    assertMaxError(lat.getDecimalDegrees(), lat2.getDecimalDegrees(),
+        Passert.NO_ERROR);
   }
 
   @Test
   public void testGetterSetter() {
     Latitude lat = new Latitude();
     lat.setLatitudeAngle(Angle.fromDegrees(SIMPLE_LAT_VALUE));
-    assertMaxError(SIMPLE_LAT_VALUE, lat.getDecimalDegrees(), Passert.SMALL_ERROR);
+    assertMaxError(SIMPLE_LAT_VALUE, lat.getDecimalDegrees(),
+        Passert.SMALL_ERROR);
   }
 
   @Test
@@ -48,7 +51,8 @@ public class LatitudeTest {
   public void testAngleGetSet() {
     Latitude lat = new Latitude();
     lat.setLatitudeAngle(Angle.fromDegrees(SIMPLE_LAT_VALUE));
-    assertMaxError(SIMPLE_LAT_VALUE, lat.getLatitudeAngle().toDegrees(), Passert.NO_ERROR);
+    assertMaxError(SIMPLE_LAT_VALUE, lat.getLatitudeAngle().toDegrees(),
+        Passert.NO_ERROR);
   }
 
 }

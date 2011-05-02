@@ -1,6 +1,5 @@
 package org.smerty.jham;
 
-
 /**
  * Latitude.
  *
@@ -15,14 +14,16 @@ public class Latitude {
    */
   private Angle latitudeAngle;
 
-  /** no argument constructor.
+  /**
+   * no argument constructor.
    *
    */
   public Latitude() {
   }
 
   /**
-   * @param angleIn angle of latitude
+   * @param angleIn
+   *          angle of latitude
    */
   public Latitude(final Angle angleIn) {
     this.latitudeAngle = angleIn;
@@ -58,7 +59,8 @@ public class Latitude {
   }
 
   /**
-   * @param latitudeAngleIn input
+   * @param latitudeAngleIn
+   *          input
    */
   public void setLatitudeAngle(Angle latitudeAngleIn) {
     this.latitudeAngle = latitudeAngleIn;

@@ -9,7 +9,10 @@ import org.junit.Test;
 
 public class AngleTest {
 
-  private static double[] anglesDeg = { 0, 45, 90, 180, 270, 360, 720, -45, -90, -180, -270, -360, 1.23, Math.PI, Math.E, Math.sqrt(2), 37.646, 51.479, 46.26519, 46.2508, 46.29106, -82.49518, -121.791, -0.458, 60.09951, 60.08436, 60.1656, -51.1908 };
+  private static double[] anglesDeg = { 0, 45, 90, 180, 270, 360, 720, -45,
+      -90, -180, -270, -360, 1.23, Math.PI, Math.E, Math.sqrt(2), 37.646,
+      51.479, 46.26519, 46.2508, 46.29106, -82.49518, -121.791, -0.458,
+      60.09951, 60.08436, 60.1656, -51.1908 };
 
   @Test
   public void testHashCode() {
@@ -24,7 +27,7 @@ public class AngleTest {
   public void testAngle() {
     Angle angle = new Angle();
     assertNotNull(angle);
-    assert(angle instanceof Angle);
+    assert (angle instanceof Angle);
   }
 
   @Test
@@ -38,8 +41,8 @@ public class AngleTest {
     Angle angle1 = new Angle(1.31);
     Angle angle2 = new Angle(1.31);
     Angle angle3 = new Angle(-2.1);
-    assert(angle1.equals(angle2));
-    assert(angle2.equals(angle1));
+    assert (angle1.equals(angle2));
+    assert (angle2.equals(angle1));
     assertFalse(angle1.equals(angle3));
     assertFalse(angle1.equals(null));
     assertFalse(angle1.equals(new String("hello")));
@@ -53,8 +56,9 @@ public class AngleTest {
     }
 
     for (int i = 0; i < 1000; i++) {
-      Angle directSetRads = new Angle((double)i/10000);
-      assertMaxError(directSetRads.toDegrees(), directSetRads.toDegrees(), Passert.NO_ERROR);
+      Angle directSetRads = new Angle((double) i / 10000);
+      assertMaxError(directSetRads.toDegrees(), directSetRads.toDegrees(),
+          Passert.NO_ERROR);
     }
   }
 
@@ -68,8 +72,11 @@ public class AngleTest {
   @Test
   public void testRadiansToDegreesToRadians() {
     for (int i = 0; i < anglesDeg.length; i++) {
-      // small error is expected sometimes since we are not tracking the original input
-      assertMaxError(anglesDeg[i], Angle.radiansToDegrees(Angle.degreesToRadians(anglesDeg[i])), Passert.TINY_ERROR);
+      // small error is expected sometimes since we are not tracking the
+      // original input
+      assertMaxError(anglesDeg[i],
+          Angle.radiansToDegrees(Angle.degreesToRadians(anglesDeg[i])),
+          Passert.TINY_ERROR);
     }
   }
 }
