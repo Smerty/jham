@@ -33,7 +33,8 @@ public class Location {
    */
   private Longitude longitude;
 
-  /** No argument constructor.
+  /**
+   * No argument constructor.
    *
    */
   public Location() {
@@ -42,8 +43,10 @@ public class Location {
   }
 
   /**
-   * @param latitudeIn initial latitude
-   * @param longitudeIn initial longitude
+   * @param latitudeIn
+   *          initial latitude
+   * @param longitudeIn
+   *          initial longitude
    */
   public Location(final Latitude latitudeIn, final Longitude longitudeIn) {
     this.latitude = latitudeIn;
@@ -51,16 +54,19 @@ public class Location {
   }
 
   /**
-   * @param latitudeIn initial latitude
-   * @param longitudeIn initial longitude
+   * @param latitudeIn
+   *          initial latitude
+   * @param longitudeIn
+   *          initial longitude
    */
   public Location(final double latitudeIn, final double longitudeIn) {
-    this.latitude = new Latitude(latitudeIn);
-    this.longitude = new Longitude(longitudeIn);
+    this.latitude = new Latitude(Angle.fromDegrees(latitudeIn));
+    this.longitude = new Longitude(Angle.fromDegrees(longitudeIn));
   }
 
   /**
-   * @param maidenhead used construct location from maidenhead locator string
+   * @param maidenhead
+   *          used construct location from maidenhead locator string
    */
   public Location(final String maidenhead) {
     this.latitude = extractLat(maidenhead);
@@ -92,8 +98,10 @@ public class Location {
   }
 
   /**
-   * @param latitudeIn latitude component of locator string
-   * @param longitudeIn longitude component of locator string
+   * @param latitudeIn
+   *          latitude component of locator string
+   * @param longitudeIn
+   *          longitude component of locator string
    * @return maidenhead locator string
    */
   public static String toMaidenhead(final double latitudeIn,
@@ -122,7 +130,8 @@ public class Location {
   }
 
   /**
-   * @param maidenheadIn locator string to be converted
+   * @param maidenheadIn
+   *          locator string to be converted
    * @return latitude
    */
   public static Latitude extractLat(final String maidenheadIn) {
@@ -130,11 +139,12 @@ public class Location {
     double latitude = -90 + 10 * (maidenhead.charAt(1) - 'A')
         + (maidenhead.charAt(3) - '0') + 2.5 / 60
         * (maidenhead.charAt(5) - 'A') + 2.5 / 60 / 2;
-    return new Latitude(latitude);
+    return new Latitude(Angle.fromDegrees(latitude));
   }
 
   /**
-   * @param maidenheadIn locator string to be converted
+   * @param maidenheadIn
+   *          locator string to be converted
    * @return longitude
    */
   public static Longitude extractLon(final String maidenheadIn) {
@@ -142,7 +152,7 @@ public class Location {
     double longitude = -180 + 20 * (maidenhead.charAt(0) - 'A') + 2
         * (maidenhead.charAt(2) - '0') + 5.0 / 60
         * (maidenhead.charAt(4) - 'A') + 5.0 / 60 / 2;
-    return new Longitude(longitude);
+    return new Longitude(Angle.fromDegrees(longitude));
   }
 
   /**
@@ -160,21 +170,24 @@ public class Location {
   }
 
   /**
-   * @param latitudeIn north/south component of location
+   * @param latitudeIn
+   *          north/south component of location
    */
-  public final  void setLatitude(final Latitude latitudeIn) {
+  public final void setLatitude(final Latitude latitudeIn) {
     this.latitude = latitudeIn;
   }
 
   /**
-   * @param longitudeIn east/west component of location
+   * @param longitudeIn
+   *          east/west component of location
    */
   public final void setLongitude(final Longitude longitudeIn) {
     this.longitude = longitudeIn;
   }
 
   /**
-   * @param loc2 second location
+   * @param loc2
+   *          second location
    * @return great circle distance in miles
    */
   public final double getDistanceMi(final Location loc2) {
@@ -182,7 +195,8 @@ public class Location {
   }
 
   /**
-   * @param loc2 second location
+   * @param loc2
+   *          second location
    * @return great circle distance in kilometers
    */
   public final double getDistanceKm(final Location loc2) {
@@ -190,7 +204,8 @@ public class Location {
   }
 
   /**
-   * @param loc2 second location
+   * @param loc2
+   *          second location
    * @return great circle distance in nautical miles
    */
   public final double getDistanceNm(final Location loc2) {
@@ -198,8 +213,10 @@ public class Location {
   }
 
   /**
-   * @param loc1 first location
-   * @param loc2 second location
+   * @param loc1
+   *          first location
+   * @param loc2
+   *          second location
    * @return great circle distance in miles
    */
   public static double getDistanceMi(final Location loc1, final Location loc2) {
@@ -207,8 +224,10 @@ public class Location {
   }
 
   /**
-   * @param loc1 first location
-   * @param loc2 second location
+   * @param loc1
+   *          first location
+   * @param loc2
+   *          second location
    * @return great circle distance in kilometers
    */
   private static double getDistanceKm(final Location loc1, final Location loc2) {
@@ -216,8 +235,10 @@ public class Location {
   }
 
   /**
-   * @param loc1 first location
-   * @param loc2 second location
+   * @param loc1
+   *          first location
+   * @param loc2
+   *          second location
    * @return great circle distance in nautical miles
    */
   private static double getDistanceNm(final Location loc1, final Location loc2) {
@@ -225,27 +246,33 @@ public class Location {
   }
 
   /**
-   * @param loc1 first location
-   * @param loc2 second location
-   * @param radius radius of the earth in the units desired for result
-   * @return great circle distance between the two locations, result units same of the radius units
+   * @param loc1
+   *          first location
+   * @param loc2
+   *          second location
+   * @param radius
+   *          radius of the earth in the units desired for result
+   * @return great circle distance between the two locations, result units same
+   *         of the radius units
    */
   private static double getDistance(final Location loc1, final Location loc2,
       final double radius) {
     if (loc1.equals(loc2)) {
       return 0;
     }
-    return Math.acos(Math.sin(loc1.getLatitude().getDecimalDegrees() * Math.PI / 180)
-        * Math.sin(loc2.getLatitude().getDecimalDegrees() * Math.PI / 180)
-        + Math.cos(loc1.latitude.getDecimalDegrees() * Math.PI / 180)
-        * Math.cos(loc2.getLatitude().getDecimalDegrees() * Math.PI / 180)
-        * Math.cos(loc2.getLongitude().getDecimalDegrees() * Math.PI / 180 - loc1.getLongitude().getDecimalDegrees()
-            * Math.PI / 180))
+    return Math.acos(Math.sin(loc1.getLatitude().getLatitudeAngle()
+        .getRadians())
+        * Math.sin(loc2.getLatitude().getLatitudeAngle().getRadians())
+        + Math.cos(loc1.getLatitude().getLatitudeAngle().getRadians())
+        * Math.cos(loc2.getLatitude().getLatitudeAngle().getRadians())
+        * Math.cos(loc2.getLongitude().getLongitudeAngle().getRadians()
+            - loc1.getLongitude().getLongitudeAngle().getRadians()))
         * radius;
   }
 
   /**
-   * @param loc2 destination location
+   * @param loc2
+   *          destination location
    * @return bearing in degrees
    */
   public final double getBearing(final Location loc2) {
@@ -253,8 +280,10 @@ public class Location {
   }
 
   /**
-   * @param loc1 source location
-   * @param loc2 destination location
+   * @param loc1
+   *          source location
+   * @param loc2
+   *          destination location
    * @return bearing in degrees
    */
   public static double getBearing(final Location loc1, final Location loc2) {
@@ -262,16 +291,16 @@ public class Location {
       return Double.NaN;
     }
 
-    double dLon = (loc2.getLongitude().getDecimalDegrees() - loc1
-        .getLongitude().getDecimalDegrees()) * Math.PI / 180;
+    double dLon = loc2.getLongitude().getLongitudeAngle().getRadians()
+        - loc1.getLongitude().getLongitudeAngle().getRadians();
 
     double y = Math.sin(dLon)
-        * Math.cos(loc2.getLatitude().getDecimalDegrees() * Math.PI / 180);
-    double x = Math.cos(loc1.getLatitude().getDecimalDegrees() * Math.PI / 180)
-        * Math.sin(loc2.getLatitude().getDecimalDegrees() * Math.PI / 180)
-        - Math.sin(loc1.getLatitude().getDecimalDegrees() * Math.PI / 180)
-        * Math.cos(loc2.getLatitude().getDecimalDegrees() * Math.PI / 180)
+        * Math.cos(loc2.getLatitude().getLatitudeAngle().getRadians());
+    double x = Math.cos(loc1.getLatitude().getLatitudeAngle().getRadians())
+        * Math.sin(loc2.getLatitude().getLatitudeAngle().getRadians())
+        - Math.sin(loc1.getLatitude().getLatitudeAngle().getRadians())
+        * Math.cos(loc2.getLatitude().getLatitudeAngle().getRadians())
         * Math.cos(dLon);
-    return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+    return (Angle.radiansToDegrees(Math.atan2(y, x)) + 360) % 360;
   }
 }
