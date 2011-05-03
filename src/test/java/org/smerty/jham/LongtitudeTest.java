@@ -21,7 +21,7 @@ public class LongtitudeTest {
   @Test
   public void testGetterSetter() {
     Longitude lon = new Longitude();
-    lon.setLongitudeAngle(Angle.fromDegrees(SIMPLE_LON_VALUE));
+    lon.setAngle(Angle.fromDegrees(SIMPLE_LON_VALUE));
     assertMaxError(SIMPLE_LON_VALUE, lon.getDecimalDegrees(), Passert.NO_ERROR);
   }
 
@@ -41,8 +41,8 @@ public class LongtitudeTest {
   @Test
   public void testAngleGetSet() {
     Longitude lon = new Longitude();
-    lon.setLongitudeAngle(Angle.fromDegrees(SIMPLE_LON_VALUE));
-    assertMaxError(SIMPLE_LON_VALUE, lon.getLongitudeAngle().toDegrees(),
+    lon.setAngle(Angle.fromDegrees(SIMPLE_LON_VALUE));
+    assertMaxError(SIMPLE_LON_VALUE, lon.getAngle().toDegrees(),
         Passert.NO_ERROR);
   }
 

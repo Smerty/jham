@@ -12,7 +12,7 @@ public class Longitude {
    * longitude in degrees, positive for eastern hemisphere, negative for western
    * hemisphere.
    */
-  private Angle longitudeAngle;
+  private Angle angle;
 
   /**
    * no argument constructor.
@@ -26,7 +26,7 @@ public class Longitude {
    *          value of longitude
    */
   public Longitude(final Angle angleIn) {
-    this.longitudeAngle = angleIn;
+    this.angle = angleIn;
   }
 
   @Override
@@ -40,7 +40,7 @@ public class Longitude {
   @Override
   public final int hashCode() {
     int hash = 1;
-    hash = hash * 17 + this.longitudeAngle.hashCode();
+    hash = hash * 17 + this.angle.hashCode();
     return hash;
   }
 
@@ -48,21 +48,21 @@ public class Longitude {
    * @return decimal value of longitude
    */
   public final double getDecimalDegrees() {
-    return this.longitudeAngle.toDegrees();
+    return this.angle.toDegrees();
   }
 
   /**
    * @return angle
    */
-  public Angle getLongitudeAngle() {
-    return longitudeAngle;
+  public Angle getAngle() {
+    return angle;
   }
 
   /**
-   * @param longitudeAngleIn
+   * @param angleIn
    *          input
    */
-  public void setLongitudeAngle(Angle longitudeAngleIn) {
-    this.longitudeAngle = longitudeAngleIn;
+  public void setAngle(Angle angleIn) {
+    this.angle = angleIn;
   }
 }

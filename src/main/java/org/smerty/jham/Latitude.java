@@ -12,7 +12,7 @@ public class Latitude {
    * latitude in degrees, positive for northern hemisphere, negative for
    * southern hemisphere.
    */
-  private Angle latitudeAngle;
+  private Angle angle;
 
   /**
    * no argument constructor.
@@ -26,7 +26,7 @@ public class Latitude {
    *          angle of latitude
    */
   public Latitude(final Angle angleIn) {
-    this.latitudeAngle = angleIn;
+    this.angle = angleIn;
   }
 
   @Override
@@ -40,7 +40,7 @@ public class Latitude {
   @Override
   public final int hashCode() {
     int hash = 1;
-    hash = hash * 17 + this.latitudeAngle.hashCode();
+    hash = hash * 17 + this.angle.hashCode();
     return hash;
   }
 
@@ -48,21 +48,21 @@ public class Latitude {
    * @return decimal value of latitude
    */
   public final double getDecimalDegrees() {
-    return this.latitudeAngle.toDegrees();
+    return this.angle.toDegrees();
   }
 
   /**
    * @return angle
    */
-  public Angle getLatitudeAngle() {
-    return latitudeAngle;
+  public Angle getAngle() {
+    return angle;
   }
 
   /**
-   * @param latitudeAngleIn
+   * @param angleIn
    *          input
    */
-  public void setLatitudeAngle(Angle latitudeAngleIn) {
-    this.latitudeAngle = latitudeAngleIn;
+  public void setAngle(Angle angleIn) {
+    this.angle = angleIn;
   }
 }

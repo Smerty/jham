@@ -29,7 +29,7 @@ public class LatitudeTest {
   @Test
   public void testGetterSetter() {
     Latitude lat = new Latitude();
-    lat.setLatitudeAngle(Angle.fromDegrees(SIMPLE_LAT_VALUE));
+    lat.setAngle(Angle.fromDegrees(SIMPLE_LAT_VALUE));
     assertMaxError(SIMPLE_LAT_VALUE, lat.getDecimalDegrees(),
         Passert.SMALL_ERROR);
   }
@@ -50,8 +50,8 @@ public class LatitudeTest {
   @Test
   public void testAngleGetSet() {
     Latitude lat = new Latitude();
-    lat.setLatitudeAngle(Angle.fromDegrees(SIMPLE_LAT_VALUE));
-    assertMaxError(SIMPLE_LAT_VALUE, lat.getLatitudeAngle().toDegrees(),
+    lat.setAngle(Angle.fromDegrees(SIMPLE_LAT_VALUE));
+    assertMaxError(SIMPLE_LAT_VALUE, lat.getAngle().toDegrees(),
         Passert.NO_ERROR);
   }
 
