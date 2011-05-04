@@ -38,18 +38,25 @@ public class Angle {
   }
 
   @Override
-  public boolean equals(final Object obj) {
-    if (obj instanceof Angle) {
-      return ((Angle) obj).hashCode() == this.hashCode();
-    }
-    return false;
+  public int hashCode() {
+    final int prime = 7;
+    int result = 1;
+    result = prime * result + ((radians == null) ? 0 : radians.hashCode());
+    return result;
   }
 
   @Override
-  public final int hashCode() {
-    int hash = 1;
-    hash = hash * 17 + this.radians.hashCode();
-    return hash;
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof Angle)) {
+      return false;
+    }
+    return ((Angle) obj).hashCode() == this.hashCode();
   }
 
   /**

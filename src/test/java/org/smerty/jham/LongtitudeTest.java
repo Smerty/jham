@@ -23,12 +23,18 @@ public class LongtitudeTest {
     Longitude lon = Longitude.fromDegrees(SIMPLE_LON_VALUE);
     Longitude lon2 = Longitude.fromDegrees(SIMPLE_LON_VALUE);
     Longitude lon3 = Longitude.fromDegrees(DIFFERENT_LON_VALUE);
+    Latitude lat = Latitude.fromDegrees(SIMPLE_LON_VALUE);
+    Angle angle = Angle.fromDegrees(SIMPLE_LON_VALUE);
     assertTrue(lon.equals(lon));
     assertTrue(lon.equals(lon2));
     assertTrue(lon2.equals(lon));
     assertFalse(lon.equals(lon3));
     assertFalse(lon.equals(null));
     assertFalse(lon.equals(new String("hello")));
+    assertFalse(lon.equals(lat));
+    assertFalse(lat.equals(lon));
+    assertFalse(angle.equals(lon));
+    assertFalse(lon.equals(angle));
   }
 
 }

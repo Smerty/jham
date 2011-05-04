@@ -12,11 +12,25 @@ import java.math.MathContext;
 public class Longitude extends Angle {
 
   @Override
-  public final boolean equals(final Object obj) {
-    if (obj instanceof Longitude) {
-      return ((Longitude) obj).hashCode() == this.hashCode();
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
     }
-    return false;
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof Longitude)) {
+      return false;
+    }
+    return ((Longitude) obj).hashCode() == this.hashCode();
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 29;
+    int result = 1;
+    result = prime * result + ((radians == null) ? 0 : radians.hashCode());
+    return result;
   }
 
   /**
