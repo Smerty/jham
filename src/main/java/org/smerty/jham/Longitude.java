@@ -1,33 +1,15 @@
 package org.smerty.jham;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+
 /**
  * Longitude.
  *
  * @author Paul Picazo <ppicazo@gmail.com>
  *
  */
-public class Longitude {
-
-  /**
-   * longitude in degrees, positive for eastern hemisphere, negative for western
-   * hemisphere.
-   */
-  private Angle angle;
-
-  /**
-   * no argument constructor.
-   *
-   */
-  public Longitude() {
-  }
-
-  /**
-   * @param angleIn
-   *          value of longitude
-   */
-  public Longitude(final Angle angleIn) {
-    this.angle = angleIn;
-  }
+public class Longitude extends Angle {
 
   @Override
   public final boolean equals(final Object obj) {
@@ -37,32 +19,16 @@ public class Longitude {
     return false;
   }
 
-  @Override
-  public final int hashCode() {
-    int hash = 1;
-    hash = hash * 17 + this.angle.hashCode();
-    return hash;
+  /**
+   * @param degrees input
+   * @return longitude object
+   */
+  public static Longitude fromDegrees(final double degrees) {
+    Longitude longitude = new Longitude();
+    longitude.radians = Angle.degreesToRadians(new BigDecimal(degrees),
+        MathContext.DECIMAL128);
+    return longitude;
   }
 
-  /**
-   * @return decimal value of longitude
-   */
-  public final double getDecimalDegrees() {
-    return this.angle.toDegrees();
-  }
 
-  /**
-   * @return angle
-   */
-  public Angle getAngle() {
-    return angle;
-  }
-
-  /**
-   * @param angleIn
-   *          input
-   */
-  public void setAngle(Angle angleIn) {
-    this.angle = angleIn;
-  }
 }

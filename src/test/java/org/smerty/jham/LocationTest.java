@@ -24,8 +24,8 @@ public class LocationTest {
   public void testLocationdoubles() {
     for (int n = 0; n < locators.length; n++) {
       Location loc = new Location(latitudes[n], longitudes[n]);
-      assertMaxError(latitudes[n], loc.getLatitude().getDecimalDegrees(), Passert.TINY_ERROR);
-      assertMaxError(longitudes[n], loc.getLongitude().getDecimalDegrees(), Passert.TINY_ERROR);
+      assertMaxError(latitudes[n], loc.getLatitude().toDegrees(), Passert.TINY_ERROR);
+      assertMaxError(longitudes[n], loc.getLongitude().toDegrees(), Passert.TINY_ERROR);
     }
   }
 
@@ -33,8 +33,8 @@ public class LocationTest {
   public void testLocationString() {
     for (int n = 0; n < locators.length; n++) {
       Location loc = new Location(locators[n]);
-      assertMaxError(latitudes[n], loc.getLatitude().getDecimalDegrees(), Passert.SMALL_ERROR);
-      assertMaxError(longitudes[n], loc.getLongitude().getDecimalDegrees(), Passert.SMALL_ERROR);
+      assertMaxError(latitudes[n], loc.getLatitude().toDegrees(), Passert.SMALL_ERROR);
+      assertMaxError(longitudes[n], loc.getLongitude().toDegrees(), Passert.SMALL_ERROR);
     }
   }
 
@@ -68,29 +68,29 @@ public class LocationTest {
   @Test
   public void testExtractLat() {
     for (int n = 0; n < locators.length; n++) {
-      assertMaxError(latitudes[n], Location.extractLat(locators[n]).getDecimalDegrees(), Passert.SMALL_ERROR);
+      assertMaxError(latitudes[n], Location.extractLat(locators[n]).toDegrees(), Passert.SMALL_ERROR);
     }
   }
 
   @Test
   public void testExtractLon() {
     for (int n = 0; n < locators.length; n++) {
-      assertMaxError(longitudes[n], Location.extractLon(locators[n]).getDecimalDegrees(), Passert.SMALL_ERROR);
+      assertMaxError(longitudes[n], Location.extractLon(locators[n]).toDegrees(), Passert.SMALL_ERROR);
     }
   }
 
   @Test
   public void testGetSetLat() {
     Location loc = new Location();
-    loc.setLatitude(new Latitude(Angle.fromDegrees(latitudes[0])));
-    assertMaxError(latitudes[0], loc.getLatitude().getDecimalDegrees(), Passert.NO_ERROR);
+    loc.setLatitude(Latitude.fromDegrees(latitudes[0]));
+    assertMaxError(latitudes[0], loc.getLatitude().toDegrees(), Passert.NO_ERROR);
   }
 
   @Test
   public void testGetSetLon() {
     Location loc = new Location();
-    loc.setLongitude(new Longitude(Angle.fromDegrees(longitudes[0])));
-    assertMaxError(longitudes[0], loc.getLongitude().getDecimalDegrees(), Passert.NO_ERROR);
+    loc.setLongitude(Longitude.fromDegrees(longitudes[0]));
+    assertMaxError(longitudes[0], loc.getLongitude().toDegrees(), Passert.NO_ERROR);
   }
 
   @Test

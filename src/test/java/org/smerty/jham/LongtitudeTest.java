@@ -13,37 +13,22 @@ public class LongtitudeTest {
 
   @Test
   public void testIt() {
-    Longitude lon = new Longitude(Angle.fromDegrees(SIMPLE_LON_VALUE));
-    assertMaxError(SIMPLE_LON_VALUE, lon.getDecimalDegrees(),
+    Longitude lon = Longitude.fromDegrees(SIMPLE_LON_VALUE);
+    assertMaxError(SIMPLE_LON_VALUE, lon.toDegrees(),
         Passert.SMALL_ERROR);
   }
 
   @Test
-  public void testGetterSetter() {
-    Longitude lon = new Longitude();
-    lon.setAngle(Angle.fromDegrees(SIMPLE_LON_VALUE));
-    assertMaxError(SIMPLE_LON_VALUE, lon.getDecimalDegrees(), Passert.NO_ERROR);
-  }
-
-  @Test
   public void testEquals() {
-    Longitude lon = new Longitude(Angle.fromDegrees(SIMPLE_LON_VALUE));
-    Longitude lon2 = new Longitude(Angle.fromDegrees(SIMPLE_LON_VALUE));
-    Longitude lon3 = new Longitude(Angle.fromDegrees(DIFFERENT_LON_VALUE));
+    Longitude lon = Longitude.fromDegrees(SIMPLE_LON_VALUE);
+    Longitude lon2 = Longitude.fromDegrees(SIMPLE_LON_VALUE);
+    Longitude lon3 = Longitude.fromDegrees(DIFFERENT_LON_VALUE);
     assertTrue(lon.equals(lon));
     assertTrue(lon.equals(lon2));
     assertTrue(lon2.equals(lon));
     assertFalse(lon.equals(lon3));
     assertFalse(lon.equals(null));
     assertFalse(lon.equals(new String("hello")));
-  }
-
-  @Test
-  public void testAngleGetSet() {
-    Longitude lon = new Longitude();
-    lon.setAngle(Angle.fromDegrees(SIMPLE_LON_VALUE));
-    assertMaxError(SIMPLE_LON_VALUE, lon.getAngle().toDegrees(),
-        Passert.NO_ERROR);
   }
 
 }

@@ -13,46 +13,32 @@ public class LatitudeTest {
 
   @Test
   public void testIt() {
-    Latitude lat = new Latitude(Angle.fromDegrees(SIMPLE_LAT_VALUE));
-    assertMaxError(SIMPLE_LAT_VALUE, lat.getDecimalDegrees(),
+    Latitude lat = Latitude.fromDegrees(SIMPLE_LAT_VALUE);
+    assertMaxError(SIMPLE_LAT_VALUE, lat.toDegrees(),
         Passert.SMALL_ERROR);
   }
 
   @Test
   public void testItDeep() {
-    Latitude lat = new Latitude(Angle.fromDegrees(SIMPLE_LAT_VALUE));
-    Latitude lat2 = new Latitude(Angle.fromDegrees(lat.getDecimalDegrees()));
-    assertMaxError(lat.getDecimalDegrees(), lat2.getDecimalDegrees(),
+    Latitude lat = Latitude.fromDegrees(SIMPLE_LAT_VALUE);
+    Latitude lat2 = Latitude.fromDegrees(lat.toDegrees());
+    assertMaxError(lat.toDegrees(), lat2.toDegrees(),
         Passert.NO_ERROR);
   }
 
   @Test
-  public void testGetterSetter() {
-    Latitude lat = new Latitude();
-    lat.setAngle(Angle.fromDegrees(SIMPLE_LAT_VALUE));
-    assertMaxError(SIMPLE_LAT_VALUE, lat.getDecimalDegrees(),
-        Passert.SMALL_ERROR);
-  }
-
-  @Test
   public void testEquals() {
-    Latitude lat = new Latitude(Angle.fromDegrees(SIMPLE_LAT_VALUE));
-    Latitude lat2 = new Latitude(Angle.fromDegrees(SIMPLE_LAT_VALUE));
-    Latitude lat3 = new Latitude(Angle.fromDegrees(DIFFERENT_LAT_VALUE));
+    Latitude lat = Latitude.fromDegrees(SIMPLE_LAT_VALUE);
+    Latitude lat2 = Latitude.fromDegrees(SIMPLE_LAT_VALUE);
+    Latitude lat3 = Latitude.fromDegrees(DIFFERENT_LAT_VALUE);
+    Longitude lon = Longitude.fromDegrees(SIMPLE_LAT_VALUE);
     assertTrue(lat.equals(lat));
     assertTrue(lat.equals(lat2));
     assertTrue(lat2.equals(lat));
     assertFalse(lat.equals(lat3));
     assertFalse(lat.equals(null));
     assertFalse(lat.equals(new String("hello")));
-  }
-
-  @Test
-  public void testAngleGetSet() {
-    Latitude lat = new Latitude();
-    lat.setAngle(Angle.fromDegrees(SIMPLE_LAT_VALUE));
-    assertMaxError(SIMPLE_LAT_VALUE, lat.getAngle().toDegrees(),
-        Passert.NO_ERROR);
+    assertFalse(lat.equals(lon));
   }
 
 }
