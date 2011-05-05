@@ -40,13 +40,14 @@ public class Angle {
   @Override
   public int hashCode() {
     final int prime = 7;
-    int result = 1;
-    result = prime * result + ((radians == null) ? 0 : radians.hashCode());
-    return result;
+    if (radians == null) {
+      return prime;
+    }
+    return prime + radians.hashCode();
   }
 
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(final Object obj) {
     if (this == obj) {
       return true;
     }

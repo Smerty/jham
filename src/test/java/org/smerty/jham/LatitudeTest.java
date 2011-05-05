@@ -32,6 +32,7 @@ public class LatitudeTest {
     Latitude lat2 = Latitude.fromDegrees(SIMPLE_LAT_VALUE);
     Latitude lat3 = Latitude.fromDegrees(DIFFERENT_LAT_VALUE);
     Longitude lon = Longitude.fromDegrees(SIMPLE_LAT_VALUE);
+    Latitude lat4 = new Latitude();
     Angle angle = Angle.fromDegrees(SIMPLE_LAT_VALUE);
     assertTrue(lat.equals(lat));
     assertTrue(lat.equals(lat2));
@@ -43,7 +44,7 @@ public class LatitudeTest {
     assertFalse(lon.equals(lat));
     assertFalse(angle.equals(lat));
     assertFalse(lat.equals(angle));
-
+    assertFalse(lat.equals(lat4));
   }
 
 }

@@ -12,14 +12,14 @@ import java.math.MathContext;
 public class Latitude extends Angle {
 
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(final Object obj) {
     if (this == obj) {
       return true;
     }
     if (obj == null) {
       return false;
     }
-    if (!(obj instanceof Latitude)) {
+    if (!(obj.getClass() == this.getClass())) {
       return false;
     }
     return ((Latitude) obj).hashCode() == this.hashCode();
@@ -27,10 +27,11 @@ public class Latitude extends Angle {
 
   @Override
   public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((radians == null) ? 0 : radians.hashCode());
-    return result;
+    final int prime = 37;
+    if (radians == null) {
+      return prime;
+    }
+    return prime + radians.hashCode();
   }
 
   /**
