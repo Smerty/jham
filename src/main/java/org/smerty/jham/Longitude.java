@@ -1,68 +1,49 @@
 package org.smerty.jham;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+
 /**
  * Longitude.
  *
  * @author Paul Picazo <ppicazo@gmail.com>
  *
  */
-public class Longitude {
-
-  /**
-   * longitude in degrees, positive for eastern hemisphere, negative for western
-   * hemisphere.
-   */
-  private Angle longitudeAngle;
-
-  /**
-   * no argument constructor.
-   *
-   */
-  public Longitude() {
-  }
-
-  /**
-   * @param angleIn
-   *          value of longitude
-   */
-  public Longitude(final Angle angleIn) {
-    this.longitudeAngle = angleIn;
-  }
+public class Longitude extends Angle {
 
   @Override
-  public final boolean equals(final Object obj) {
-    if (obj instanceof Longitude) {
-      return ((Longitude) obj).hashCode() == this.hashCode();
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
     }
-    return false;
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj.getClass() == this.getClass())) {
+      return false;
+    }
+    return ((Longitude) obj).hashCode() == this.hashCode();
   }
 
   @Override
-  public final int hashCode() {
-    int hash = 1;
-    hash = hash * 17 + this.longitudeAngle.hashCode();
-    return hash;
+  public int hashCode() {
+    final int prime = 29;
+    if (radians == null) {
+      return prime;
+    }
+    return prime + radians.hashCode();
   }
 
   /**
-   * @return decimal value of longitude
+   * @param degrees input
+   * @return longitude object
    */
-  public final double getDecimalDegrees() {
-    return this.longitudeAngle.toDegrees();
+  public static Longitude fromDegrees(final double degrees) {
+    Longitude longitude = new Longitude();
+    longitude.radians = Angle.degreesToRadians(new BigDecimal(degrees),
+        MathContext.DECIMAL128);
+    return longitude;
   }
 
-  /**
-   * @return angle
-   */
-  public Angle getLongitudeAngle() {
-    return longitudeAngle;
-  }
 
-  /**
-   * @param longitudeAngleIn
-   *          input
-   */
-  public void setLongitudeAngle(Angle longitudeAngleIn) {
-    this.longitudeAngle = longitudeAngleIn;
-  }
 }

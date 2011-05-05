@@ -20,7 +20,7 @@ public class Angle {
   /**
    * representation of the angle in radians.
    */
-  private BigDecimal radians;
+  protected BigDecimal radians;
 
   /**
    * no argument constructor.
@@ -38,18 +38,26 @@ public class Angle {
   }
 
   @Override
-  public final boolean equals(final Object obj) {
-    if (obj instanceof Angle) {
-      return ((Angle) obj).hashCode() == this.hashCode();
+  public int hashCode() {
+    final int prime = 7;
+    if (radians == null) {
+      return prime;
     }
-    return false;
+    return prime + radians.hashCode();
   }
 
   @Override
-  public final int hashCode() {
-    int hash = 1;
-    hash = hash * 17 + this.radians.hashCode();
-    return hash;
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof Angle)) {
+      return false;
+    }
+    return ((Angle) obj).hashCode() == this.hashCode();
   }
 
   /**
@@ -113,7 +121,7 @@ public class Angle {
    *          MathContext for divsion
    * @return degrees
    */
-  private static BigDecimal radiansToDegrees(final BigDecimal radians,
+  protected static BigDecimal radiansToDegrees(final BigDecimal radians,
       final MathContext mc) {
     return radians.multiply(new BigDecimal(180)).divide(BIG_PI, mc);
   }
@@ -125,7 +133,7 @@ public class Angle {
    *          MathContext for divsion
    * @return radians
    */
-  private static BigDecimal degreesToRadians(final BigDecimal degrees,
+  protected static BigDecimal degreesToRadians(final BigDecimal degrees,
       final MathContext mc) {
     return degrees.divide(new BigDecimal(180), mc).multiply(BIG_PI);
   }
