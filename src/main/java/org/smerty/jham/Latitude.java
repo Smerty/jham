@@ -1,68 +1,48 @@
 package org.smerty.jham;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+
 /**
  * Latitude.
  *
  * @author Paul Picazo <ppicazo@gmail.com>
  *
  */
-public class Latitude {
-
-  /**
-   * latitude in degrees, positive for northern hemisphere, negative for
-   * southern hemisphere.
-   */
-  private Angle latitudeAngle;
-
-  /**
-   * no argument constructor.
-   *
-   */
-  public Latitude() {
-  }
-
-  /**
-   * @param angleIn
-   *          angle of latitude
-   */
-  public Latitude(final Angle angleIn) {
-    this.latitudeAngle = angleIn;
-  }
+public class Latitude extends Angle {
 
   @Override
-  public final boolean equals(final Object obj) {
-    if (obj instanceof Latitude) {
-      return ((Latitude) obj).hashCode() == this.hashCode();
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
     }
-    return false;
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj.getClass() == this.getClass())) {
+      return false;
+    }
+    return ((Latitude) obj).hashCode() == this.hashCode();
   }
 
   @Override
-  public final int hashCode() {
-    int hash = 1;
-    hash = hash * 17 + this.latitudeAngle.hashCode();
-    return hash;
+  public int hashCode() {
+    final int prime = 37;
+    if (radians == null) {
+      return prime;
+    }
+    return prime + radians.hashCode();
   }
 
   /**
-   * @return decimal value of latitude
+   * @param degrees input
+   * @return latitude object
    */
-  public final double getDecimalDegrees() {
-    return this.latitudeAngle.toDegrees();
+  public static Latitude fromDegrees(final double degrees) {
+    Latitude latitude = new Latitude();
+    latitude.radians = Angle.degreesToRadians(new BigDecimal(degrees),
+        MathContext.DECIMAL128);
+    return latitude;
   }
 
-  /**
-   * @return angle
-   */
-  public Angle getLatitudeAngle() {
-    return latitudeAngle;
-  }
-
-  /**
-   * @param latitudeAngleIn
-   *          input
-   */
-  public void setLatitudeAngle(Angle latitudeAngleIn) {
-    this.latitudeAngle = latitudeAngleIn;
-  }
 }

@@ -3,6 +3,7 @@ package org.smerty.jham;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.smerty.jham.Passert.assertMaxError;
 
 import org.junit.Test;
@@ -78,5 +79,21 @@ public class AngleTest {
           Angle.radiansToDegrees(Angle.degreesToRadians(anglesDeg[i])),
           Passert.TINY_ERROR);
     }
+  }
+
+  @Test
+  public void testEqualsHashCode() {
+    Angle angle = new Angle();
+    Angle angle2 = new Angle(1.0);
+    Angle angle3 = new Angle(1.0);
+    Angle angle4 = new Angle(1.1);
+
+    assertTrue(angle2.equals(angle3));
+    assertTrue(angle3.equals(angle2));
+    assertTrue(angle2.equals(angle2));
+    assertFalse(angle2.equals(angle));
+    assertFalse(angle4.equals(angle2));
+    assertFalse(angle2.equals(null));
+    assertFalse(angle2.equals(new String("moo")));
   }
 }

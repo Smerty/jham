@@ -60,8 +60,8 @@ public class Location {
    *          initial longitude
    */
   public Location(final double latitudeIn, final double longitudeIn) {
-    this.latitude = new Latitude(Angle.fromDegrees(latitudeIn));
-    this.longitude = new Longitude(Angle.fromDegrees(longitudeIn));
+    this.latitude = Latitude.fromDegrees(latitudeIn);
+    this.longitude = Longitude.fromDegrees(longitudeIn);
   }
 
   /**
@@ -93,8 +93,8 @@ public class Location {
    * @return maidenhead locator string
    */
   public final String toMaidenhead() {
-    return toMaidenhead(this.latitude.getDecimalDegrees(),
-        this.longitude.getDecimalDegrees());
+    return toMaidenhead(this.latitude.toDegrees(),
+        this.longitude.toDegrees());
   }
 
   /**
@@ -139,7 +139,7 @@ public class Location {
     double latitude = -90 + 10 * (maidenhead.charAt(1) - 'A')
         + (maidenhead.charAt(3) - '0') + 2.5 / 60
         * (maidenhead.charAt(5) - 'A') + 2.5 / 60 / 2;
-    return new Latitude(Angle.fromDegrees(latitude));
+    return Latitude.fromDegrees(latitude);
   }
 
   /**
@@ -152,7 +152,7 @@ public class Location {
     double longitude = -180 + 20 * (maidenhead.charAt(0) - 'A') + 2
         * (maidenhead.charAt(2) - '0') + 5.0 / 60
         * (maidenhead.charAt(4) - 'A') + 5.0 / 60 / 2;
-    return new Longitude(Angle.fromDegrees(longitude));
+    return Longitude.fromDegrees(longitude);
   }
 
   /**
@@ -260,13 +260,12 @@ public class Location {
     if (loc1.equals(loc2)) {
       return 0;
     }
-    return Math.acos(Math.sin(loc1.getLatitude().getLatitudeAngle()
-        .getRadians())
-        * Math.sin(loc2.getLatitude().getLatitudeAngle().getRadians())
-        + Math.cos(loc1.getLatitude().getLatitudeAngle().getRadians())
-        * Math.cos(loc2.getLatitude().getLatitudeAngle().getRadians())
-        * Math.cos(loc2.getLongitude().getLongitudeAngle().getRadians()
-            - loc1.getLongitude().getLongitudeAngle().getRadians()))
+    return Math.acos(Math.sin(loc1.getLatitude().getRadians())
+        * Math.sin(loc2.getLatitude().getRadians())
+        + Math.cos(loc1.getLatitude().getRadians())
+        * Math.cos(loc2.getLatitude().getRadians())
+        * Math.cos(loc2.getLongitude().getRadians()
+            - loc1.getLongitude().getRadians()))
         * radius;
   }
 
@@ -291,15 +290,15 @@ public class Location {
       return Double.NaN;
     }
 
-    double dLon = loc2.getLongitude().getLongitudeAngle().getRadians()
-        - loc1.getLongitude().getLongitudeAngle().getRadians();
+    double dLon = loc2.getLongitude().getRadians()
+        - loc1.getLongitude().getRadians();
 
     double y = Math.sin(dLon)
-        * Math.cos(loc2.getLatitude().getLatitudeAngle().getRadians());
-    double x = Math.cos(loc1.getLatitude().getLatitudeAngle().getRadians())
-        * Math.sin(loc2.getLatitude().getLatitudeAngle().getRadians())
-        - Math.sin(loc1.getLatitude().getLatitudeAngle().getRadians())
-        * Math.cos(loc2.getLatitude().getLatitudeAngle().getRadians())
+        * Math.cos(loc2.getLatitude().getRadians());
+    double x = Math.cos(loc1.getLatitude().getRadians())
+        * Math.sin(loc2.getLatitude().getRadians())
+        - Math.sin(loc1.getLatitude().getRadians())
+        * Math.cos(loc2.getLatitude().getRadians())
         * Math.cos(dLon);
     return (Angle.radiansToDegrees(Math.atan2(y, x)) + 360) % 360;
   }
