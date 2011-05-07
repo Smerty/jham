@@ -15,7 +15,7 @@ public class LatitudeTest {
   public void testIt() {
     Latitude lat = Latitude.fromDegrees(SIMPLE_LAT_VALUE);
     assertMaxError(SIMPLE_LAT_VALUE, lat.toDegrees(),
-        Passert.SMALL_ERROR);
+        Passert.NO_ERROR);
   }
 
   @Test

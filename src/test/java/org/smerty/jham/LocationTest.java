@@ -24,8 +24,8 @@ public class LocationTest {
   public void testLocationdoubles() {
     for (int n = 0; n < locators.length; n++) {
       Location loc = new Location(latitudes[n], longitudes[n]);
-      assertMaxError(latitudes[n], loc.getLatitude().toDegrees(), Passert.TINY_ERROR);
-      assertMaxError(longitudes[n], loc.getLongitude().toDegrees(), Passert.TINY_ERROR);
+      assertMaxError(latitudes[n], loc.getLatitude().toDegrees(), Passert.NO_ERROR);
+      assertMaxError(longitudes[n], loc.getLongitude().toDegrees(), Passert.NO_ERROR);
     }
   }
 

@@ -15,7 +15,7 @@ public class LongtitudeTest {
   public void testIt() {
     Longitude lon = Longitude.fromDegrees(SIMPLE_LON_VALUE);
     assertMaxError(SIMPLE_LON_VALUE, lon.toDegrees(),
-        Passert.SMALL_ERROR);
+        Passert.NO_ERROR);
   }
 
   @Test
