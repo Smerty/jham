@@ -39,6 +39,7 @@ public class AngleTest {
 
   @Test
   public void testEqualsObject() {
+    Angle angle = new Angle();
     Angle angle1 = new Angle(1.31);
     Angle angle2 = new Angle(1.31);
     Angle angle3 = new Angle(-2.1);
@@ -47,6 +48,8 @@ public class AngleTest {
     assertFalse(angle1.equals(angle3));
     assertFalse(angle1.equals(null));
     assertFalse(angle1.equals(new String("hello")));
+    assertFalse(angle1.equals(angle));
+    assertFalse(angle.equals(angle1));
   }
 
   @Test

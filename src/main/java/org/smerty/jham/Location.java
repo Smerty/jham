@@ -74,7 +74,7 @@ public class Location {
   }
 
   @Override
-  public final boolean equals(final Object obj) {
+  public boolean equals(final Object obj) {
     if (obj instanceof Location) {
       return ((Location) obj).hashCode() == this.hashCode();
     }
@@ -82,7 +82,7 @@ public class Location {
   }
 
   @Override
-  public final int hashCode() {
+  public int hashCode() {
     int hash = 1;
     hash = hash * 17 + this.latitude.hashCode();
     hash = hash * 31 + this.longitude.hashCode();
@@ -92,7 +92,7 @@ public class Location {
   /**
    * @return maidenhead locator string
    */
-  public final String toMaidenhead() {
+  public String toMaidenhead() {
     return toMaidenhead(this.latitude.toDegrees(),
         this.longitude.toDegrees());
   }
@@ -158,14 +158,14 @@ public class Location {
   /**
    * @return latitude
    */
-  public final Latitude getLatitude() {
+  public Latitude getLatitude() {
     return latitude;
   }
 
   /**
    * @return longitude
    */
-  public final Longitude getLongitude() {
+  public Longitude getLongitude() {
     return longitude;
   }
 
@@ -173,7 +173,7 @@ public class Location {
    * @param latitudeIn
    *          north/south component of location
    */
-  public final void setLatitude(final Latitude latitudeIn) {
+  public void setLatitude(final Latitude latitudeIn) {
     this.latitude = latitudeIn;
   }
 
@@ -181,7 +181,7 @@ public class Location {
    * @param longitudeIn
    *          east/west component of location
    */
-  public final void setLongitude(final Longitude longitudeIn) {
+  public void setLongitude(final Longitude longitudeIn) {
     this.longitude = longitudeIn;
   }
 
@@ -190,7 +190,7 @@ public class Location {
    *          second location
    * @return great circle distance in miles
    */
-  public final double getDistanceMi(final Location loc2) {
+  public double getDistanceMi(final Location loc2) {
     return getDistanceMi(this, loc2);
   }
 
@@ -199,7 +199,7 @@ public class Location {
    *          second location
    * @return great circle distance in kilometers
    */
-  public final double getDistanceKm(final Location loc2) {
+  public double getDistanceKm(final Location loc2) {
     return getDistanceKm(this, loc2);
   }
 
@@ -208,7 +208,7 @@ public class Location {
    *          second location
    * @return great circle distance in nautical miles
    */
-  public final double getDistanceNm(final Location loc2) {
+  public double getDistanceNm(final Location loc2) {
     return getDistanceNm(this, loc2);
   }
 
@@ -274,7 +274,7 @@ public class Location {
    *          destination location
    * @return bearing in degrees
    */
-  public final double getBearing(final Location loc2) {
+  public double getBearing(final Location loc2) {
     return getBearing(this, loc2);
   }
 
