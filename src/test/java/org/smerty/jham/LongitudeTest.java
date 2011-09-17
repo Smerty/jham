@@ -6,7 +6,7 @@ import static org.smerty.jham.Passert.assertMaxError;
 
 import org.junit.Test;
 
-public class LongtitudeTest {
+public class LongitudeTest {
 
   private static final double SIMPLE_LON_VALUE = 132.5;
   private static final double DIFFERENT_LON_VALUE = 12.5;

@@ -118,7 +118,7 @@ public class Angle {
    * @param radians
    *          input
    * @param mc
-   *          MathContext for divsion
+   *          MathContext for division
    * @return degrees
    */
   protected static BigDecimal radiansToDegrees(final BigDecimal radians,
@@ -130,7 +130,7 @@ public class Angle {
    * @param degrees
    *          input
    * @param mc
-   *          MathContext for divsion
+   *          MathContext for division
    * @return radians
    */
   protected static BigDecimal degreesToRadians(final BigDecimal degrees,
