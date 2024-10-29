@@ -58,6 +58,9 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <additionalJOption>-Xdoclint:none</additionalJOption>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
