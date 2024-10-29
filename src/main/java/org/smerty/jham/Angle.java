@@ -7,7 +7,7 @@ import java.math.MathContext;
  * Allow for easy use of angles without messy conversions to and from degrees
  * and radians.
  *
- * @author Paul Picazo <ppicazo@gmail.com>
+ * @author Paul Picazo &lt;ppicazo@gmail.com&gt;
  *
  */
 public class Angle {

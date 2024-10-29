@@ -6,7 +6,7 @@ import java.math.MathContext;
 /**
  * Latitude.
  *
- * @author Paul Picazo <ppicazo@gmail.com>
+ * @author Paul Picazo &lt;ppicazo@gmail.com&gt;
  *
  */
 public class Latitude extends Angle {

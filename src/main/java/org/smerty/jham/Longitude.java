@@ -6,7 +6,7 @@ import java.math.MathContext;
 /**
  * Longitude.
  *
- * @author Paul Picazo <ppicazo@gmail.com>
+ * @author Paul Picazo &lt;ppicazo@gmail.com&gt;
  *
  */
 public class Longitude extends Angle {
