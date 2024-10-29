@@ -39,11 +39,13 @@ public class Longitude extends Angle {
    * @return longitude object
    */
   public static Longitude fromDegrees(final double degrees) {
+    if (Double.isNaN(degrees) || Double.isInfinite(degrees)) {
+      return null;
+    }
     Longitude longitude = new Longitude();
     longitude.radians = Angle.degreesToRadians(new BigDecimal(degrees),
         MathContext.DECIMAL128);
     return longitude;
   }
-
 
 }

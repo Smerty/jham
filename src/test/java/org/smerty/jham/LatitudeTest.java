@@ -50,13 +50,13 @@ public class LatitudeTest {
   @Test
   public void testInvalidInputs() {
     Latitude latNaN = Latitude.fromDegrees(Double.NaN);
-    assertTrue(Double.isNaN(latNaN.toDegrees()));
+    assertTrue(latNaN == null);
 
     Latitude latPosInf = Latitude.fromDegrees(Double.POSITIVE_INFINITY);
-    assertTrue(Double.isInfinite(latPosInf.toDegrees()));
+    assertTrue(latPosInf == null);
 
     Latitude latNegInf = Latitude.fromDegrees(Double.NEGATIVE_INFINITY);
-    assertTrue(Double.isInfinite(latNegInf.toDegrees()));
+    assertTrue(latNegInf == null);
   }
 
   @Test

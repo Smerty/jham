@@ -34,7 +34,11 @@ public class Angle {
    *          angle in radians
    */
   public Angle(final double radiansIn) {
-    this.radians = new BigDecimal(radiansIn);
+    if (Double.isNaN(radiansIn) || Double.isInfinite(radiansIn)) {
+      this.radians = null;
+    } else {
+      this.radians = new BigDecimal(radiansIn);
+    }
   }
 
   @Override

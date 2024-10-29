@@ -43,13 +43,13 @@ public class LongitudeTest {
   @Test
   public void testInvalidInputs() {
     Longitude lonNaN = Longitude.fromDegrees(Double.NaN);
-    assertTrue(Double.isNaN(lonNaN.toDegrees()));
+    assertTrue(lonNaN == null);
 
     Longitude lonPosInf = Longitude.fromDegrees(Double.POSITIVE_INFINITY);
-    assertTrue(Double.isInfinite(lonPosInf.toDegrees()));
+    assertTrue(lonPosInf == null);
 
     Longitude lonNegInf = Longitude.fromDegrees(Double.NEGATIVE_INFINITY);
-    assertTrue(Double.isInfinite(lonNegInf.toDegrees()));
+    assertTrue(lonNegInf == null);
   }
 
   @Test
