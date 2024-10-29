@@ -6,7 +6,7 @@ package org.smerty.jham;
  * "Conversion Between Geodetic and Grid Locator Systems" by Edmund T. Tyson,
  * N5JTY in QST January 1989, pp. 29-30, 43
  *
- * @author Paul Picazo <ppicazo@gmail.com>
+ * @author Paul Picazo &lt;ppicazo@gmail.com&gt;
  *
  */
 public class Location {
