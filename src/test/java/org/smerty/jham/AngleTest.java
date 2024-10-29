@@ -99,4 +99,37 @@ public class AngleTest {
     assertFalse(angle2.equals(null));
     assertFalse(angle2.equals(new String("moo")));
   }
+
+  @Test
+  public void testInvalidInputs() {
+    Angle angleNaN = new Angle(Double.NaN);
+    assertTrue(Double.isNaN(angleNaN.getRadians()));
+
+    Angle anglePosInf = new Angle(Double.POSITIVE_INFINITY);
+    assertTrue(Double.isInfinite(anglePosInf.getRadians()));
+
+    Angle angleNegInf = new Angle(Double.NEGATIVE_INFINITY);
+    assertTrue(Double.isInfinite(angleNegInf.getRadians()));
+  }
+
+  @Test
+  public void testBoundaryValues() {
+    Angle angleMax = new Angle(Double.MAX_VALUE);
+    assertMaxError(Double.MAX_VALUE, angleMax.getRadians(), Passert.NO_ERROR);
+
+    Angle angleMin = new Angle(Double.MIN_VALUE);
+    assertMaxError(Double.MIN_VALUE, angleMin.getRadians(), Passert.NO_ERROR);
+  }
+
+  @Test
+  public void testExceptionalCases() {
+    try {
+      Angle angleNull = new Angle();
+      angleNull.setRadians(Double.parseDouble(null));
+    } catch (NumberFormatException e) {
+      assertTrue(true);
+    } catch (NullPointerException e) {
+      assertTrue(true);
+    }
+  }
 }

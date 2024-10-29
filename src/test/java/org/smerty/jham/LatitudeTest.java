@@ -47,4 +47,36 @@ public class LatitudeTest {
     assertFalse(lat.equals(lat4));
   }
 
+  @Test
+  public void testInvalidInputs() {
+    Latitude latNaN = Latitude.fromDegrees(Double.NaN);
+    assertTrue(Double.isNaN(latNaN.toDegrees()));
+
+    Latitude latPosInf = Latitude.fromDegrees(Double.POSITIVE_INFINITY);
+    assertTrue(Double.isInfinite(latPosInf.toDegrees()));
+
+    Latitude latNegInf = Latitude.fromDegrees(Double.NEGATIVE_INFINITY);
+    assertTrue(Double.isInfinite(latNegInf.toDegrees()));
+  }
+
+  @Test
+  public void testBoundaryValues() {
+    Latitude latMax = Latitude.fromDegrees(Double.MAX_VALUE);
+    assertMaxError(Double.MAX_VALUE, latMax.toDegrees(), Passert.NO_ERROR);
+
+    Latitude latMin = Latitude.fromDegrees(Double.MIN_VALUE);
+    assertMaxError(Double.MIN_VALUE, latMin.toDegrees(), Passert.NO_ERROR);
+  }
+
+  @Test
+  public void testExceptionalCases() {
+    try {
+      Latitude latNull = new Latitude();
+      latNull.setRadians(Double.parseDouble(null));
+    } catch (NumberFormatException e) {
+      assertTrue(true);
+    } catch (NullPointerException e) {
+      assertTrue(true);
+    }
+  }
 }

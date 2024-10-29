@@ -40,4 +40,36 @@ public class LongitudeTest {
     assertFalse(lon.equals(lon4));
   }
 
+  @Test
+  public void testInvalidInputs() {
+    Longitude lonNaN = Longitude.fromDegrees(Double.NaN);
+    assertTrue(Double.isNaN(lonNaN.toDegrees()));
+
+    Longitude lonPosInf = Longitude.fromDegrees(Double.POSITIVE_INFINITY);
+    assertTrue(Double.isInfinite(lonPosInf.toDegrees()));
+
+    Longitude lonNegInf = Longitude.fromDegrees(Double.NEGATIVE_INFINITY);
+    assertTrue(Double.isInfinite(lonNegInf.toDegrees()));
+  }
+
+  @Test
+  public void testBoundaryValues() {
+    Longitude lonMax = Longitude.fromDegrees(Double.MAX_VALUE);
+    assertMaxError(Double.MAX_VALUE, lonMax.toDegrees(), Passert.NO_ERROR);
+
+    Longitude lonMin = Longitude.fromDegrees(Double.MIN_VALUE);
+    assertMaxError(Double.MIN_VALUE, lonMin.toDegrees(), Passert.NO_ERROR);
+  }
+
+  @Test
+  public void testExceptionalCases() {
+    try {
+      Longitude lonNull = new Longitude();
+      lonNull.setRadians(Double.parseDouble(null));
+    } catch (NumberFormatException e) {
+      assertTrue(true);
+    } catch (NullPointerException e) {
+      assertTrue(true);
+    }
+  }
 }

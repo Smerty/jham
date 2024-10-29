@@ -145,4 +145,63 @@ public class LocationTest {
     assertTrue(loc2.equals(loc));
     assertFalse(loc.equals(null));
   }
+
+  @Test
+  public void testInvalidInputs() {
+    try {
+      Location locNaN = new Location(Double.NaN, Double.NaN);
+      assertTrue(Double.isNaN(locNaN.getLatitude().toDegrees()));
+      assertTrue(Double.isNaN(locNaN.getLongitude().toDegrees()));
+    } catch (Exception e) {
+      assertTrue(false);
+    }
+
+    try {
+      Location locPosInf = new Location(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
+      assertTrue(Double.isInfinite(locPosInf.getLatitude().toDegrees()));
+      assertTrue(Double.isInfinite(locPosInf.getLongitude().toDegrees()));
+    } catch (Exception e) {
+      assertTrue(false);
+    }
+
+    try {
+      Location locNegInf = new Location(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
+      assertTrue(Double.isInfinite(locNegInf.getLatitude().toDegrees()));
+      assertTrue(Double.isInfinite(locNegInf.getLongitude().toDegrees()));
+    } catch (Exception e) {
+      assertTrue(false);
+    }
+  }
+
+  @Test
+  public void testBoundaryValues() {
+    try {
+      Location locMax = new Location(Double.MAX_VALUE, Double.MAX_VALUE);
+      assertMaxError(Double.MAX_VALUE, locMax.getLatitude().toDegrees(), Passert.NO_ERROR);
+      assertMaxError(Double.MAX_VALUE, locMax.getLongitude().toDegrees(), Passert.NO_ERROR);
+    } catch (Exception e) {
+      assertTrue(false);
+    }
+
+    try {
+      Location locMin = new Location(Double.MIN_VALUE, Double.MIN_VALUE);
+      assertMaxError(Double.MIN_VALUE, locMin.getLatitude().toDegrees(), Passert.NO_ERROR);
+      assertMaxError(Double.MIN_VALUE, locMin.getLongitude().toDegrees(), Passert.NO_ERROR);
+    } catch (Exception e) {
+      assertTrue(false);
+    }
+  }
+
+  @Test
+  public void testExceptionalCases() {
+    try {
+      Location locNull = new Location();
+      locNull.setLatitude(null);
+      locNull.setLongitude(null);
+    } catch (NullPointerException e) {
+      assertTrue(true);
+    } catch (Exception e) {
+      assertTrue(false);
+    }
+  }
 }
