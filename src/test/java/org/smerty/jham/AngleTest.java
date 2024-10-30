@@ -103,13 +103,13 @@ public class AngleTest {
   @Test
   public void testInvalidInputs() {
     Angle angleNaN = new Angle(Double.NaN);
-    assertTrue(angleNaN == null);
+    assertTrue(angleNaN.getRadians() == null);
 
     Angle anglePosInf = new Angle(Double.POSITIVE_INFINITY);
-    assertTrue(anglePosInf == null);
+    assertTrue(anglePosInf.getRadians() == null);
 
     Angle angleNegInf = new Angle(Double.NEGATIVE_INFINITY);
-    assertTrue(angleNegInf == null);
+    assertTrue(angleNegInf.getRadians() == null);
   }
 
   @Test
