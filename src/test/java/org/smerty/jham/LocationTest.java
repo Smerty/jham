@@ -150,24 +150,24 @@ public class LocationTest {
   public void testInvalidInputs() {
     try {
       Location locNaN = new Location(Double.NaN, Double.NaN);
-      assertTrue(Double.isNaN(locNaN.getLatitude().toDegrees()));
-      assertTrue(Double.isNaN(locNaN.getLongitude().toDegrees()));
+      assertTrue(locNaN.getLatitude() == null);
+      assertTrue(locNaN.getLongitude() == null);
     } catch (Exception e) {
       assertTrue(false);
     }
 
     try {
       Location locPosInf = new Location(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
-      assertTrue(Double.isInfinite(locPosInf.getLatitude().toDegrees()));
-      assertTrue(Double.isInfinite(locPosInf.getLongitude().toDegrees()));
+      assertTrue(locPosInf.getLatitude() == null);
+      assertTrue(locPosInf.getLongitude() == null);
     } catch (Exception e) {
       assertTrue(false);
     }
 
     try {
       Location locNegInf = new Location(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
-      assertTrue(Double.isInfinite(locNegInf.getLatitude().toDegrees()));
-      assertTrue(Double.isInfinite(locNegInf.getLongitude().toDegrees()));
+      assertTrue(locNegInf.getLatitude() == null);
+      assertTrue(locNegInf.getLongitude() == null);
     } catch (Exception e) {
       assertTrue(false);
     }

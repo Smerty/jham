@@ -39,6 +39,9 @@ public class Latitude extends Angle {
    * @return latitude object
    */
   public static Latitude fromDegrees(final double degrees) {
+    if (Double.isNaN(degrees) || Double.isInfinite(degrees)) {
+      return null;
+    }
     Latitude latitude = new Latitude();
     latitude.radians = Angle.degreesToRadians(new BigDecimal(degrees),
         MathContext.DECIMAL128);
